@@ -204,8 +204,6 @@ public class OperacionesBD {
 				st = conexion.createStatement();
 				borrarArticulos(id);
 
-				st.close();
-				Conexion.desconectar();
 			} else {
 				System.out.println("Conexion no realizada");
 			}
@@ -253,8 +251,6 @@ public class OperacionesBD {
 				st = conexion.createStatement();
 				buscarArticulo(id);
 
-				st.close();
-				Conexion.desconectar();
 			} else {
 				System.out.println("Conexion no realizada");
 			}
@@ -294,8 +290,6 @@ public class OperacionesBD {
 				st = conexion.createStatement();
 				consultarTodosArticulos();
 
-				st.close();
-				Conexion.desconectar();
 			} else {
 				System.out.println("Conexion no realizada");
 			}
@@ -335,7 +329,7 @@ public class OperacionesBD {
 				st = conexion.createStatement();
 				n = consultarInsecionHilos();
 
-				st.close();
+
 			} else {
 				System.out.println("Conexion no realizada");
 			}

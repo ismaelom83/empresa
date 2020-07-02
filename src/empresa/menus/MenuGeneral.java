@@ -53,7 +53,7 @@ public  class MenuGeneral {
 		System.out.println("14. Informe de artículo menos comprado");
 		System.out.println("15. Informe de artículo más comprado entre fechas");
 		System.out.println("16. Informe de artículo menos comprado entre fechas");
-		System.out.println("17. Hilos de comprocion insercion");
+		System.out.println("17. Hilos de comprobacion tabla articulos");
 		System.out.println("18. Stop hilo de comprobacion");
 	};
 	

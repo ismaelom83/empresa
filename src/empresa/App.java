@@ -29,7 +29,6 @@ public class App {
 		Trabajadores comprobarTrabajador = new Trabajadores();
 		Trabajadores enviarMensajeTrabajador = new Trabajadores();
 		ContadorRegistrosHilos c1  = new ContadorRegistrosHilos();
-		Thread t1 = new Thread(c1);
 		Mensajes men = null;
 		sc = new Scanner(System.in);
 		String usuario, contrasenya = null;
@@ -52,7 +51,7 @@ public class App {
 
 			if (comprobarTrabajador != null) {
 
-				System.out.println("Se ha encontrado al trabajador: " + comprobarTrabajador.getUsuario()
+				System.out.println("Se ha encontrado al trabajador: " + comprobarTrabajador.getNombre()+" "+comprobarTrabajador.getApellido1()
 						+ "\n" + "En el departamento de: " + comprobarTrabajador.getDepartamento().toUpperCase());
 				System.out.println("");
 				switch (comprobarTrabajador.getDepartamento()) {
@@ -171,6 +170,7 @@ public class App {
 
 							break;
 						case 17:
+							Thread t1 = new Thread(c1);
 							t1.start();
 							break;
 						case 18:
