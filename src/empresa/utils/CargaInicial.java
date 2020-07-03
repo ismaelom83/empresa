@@ -1,5 +1,6 @@
 package empresa.utils;
 
+import empresa.modelo.Clientes;
 import empresa.modelo.Departamento;
 import empresa.modelo.Empresa;
 import empresa.modelo.Trabajadores;
@@ -7,6 +8,17 @@ import empresa.modelo.Trabajadores;
 public class CargaInicial {
 	
 	public  void cargaInicial(Empresa empresa) {
+		
+		Clientes cliente1 = new Clientes(0,1000,"c1","paso");
+		Clientes cliente2 = new Clientes(4,1300,"c2","paso");
+		Clientes cliente3 = new Clientes(6,900,"c3","paso");
+		Clientes cliente4 = new Clientes(0,2000,"c4","paso");
+		
+	empresa.addCliente("c1", cliente1);
+	empresa.addCliente("c2", cliente2);
+	empresa.addCliente("c3", cliente3);
+	empresa.addCliente("c4", cliente4);
+		
 		Departamento departamentoCompras = new Departamento(Departamento.DEPARTAMENTO_COMPRAS, "1");
 		Departamento departamentoVentas = new Departamento(Departamento.DEPARTAMENTO_VENTAS, "2");
 		Departamento departamentoRRHH = new Departamento(Departamento.DEPARTAMENTO_RRHH, "3");

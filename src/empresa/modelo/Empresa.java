@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 public class Empresa {
+	
 	private String nombre;
 
 	private HashMap<String, Departamento> departamento = new HashMap<>();
+	private HashMap<String, Clientes> clientes = new HashMap<>();
 
 	public Empresa() {
 		super();
@@ -19,6 +21,25 @@ public class Empresa {
 		super();
 		this.nombre = nombre;
 		departamento = new HashMap<>();
+	}
+	
+	
+
+	public Empresa(String nombre, HashMap<String, Departamento> departamento, HashMap<String, Clientes> clientes) {
+		super();
+		this.nombre = nombre;
+		this.departamento = departamento;
+		this.clientes = clientes;
+	}
+	
+	
+
+	public HashMap<String, Clientes> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(HashMap<String, Clientes> clientes) {
+		this.clientes = clientes;
 	}
 
 	public String getNombre() {
@@ -37,14 +58,28 @@ public class Empresa {
 		this.departamento = departamento;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Empresa [nombre=" + nombre + ", departamento=" + departamento + "]";
+		return "Empresa [nombre=" + nombre + ", departamento=" + departamento + ", clientes=" + clientes + "]";
 	}
 
 	public void addDepartamento(String codigo, Departamento d) {
 
 		departamento.put(codigo, d);
+
+	}
+	
+
+	public void addCliente(String usuario, Clientes c) {
+
+		if (clientes.containsKey(c.getUsuario())) {
+			System.out.println("este usuario ya existe");
+		} else {
+			clientes.put(usuario, c);
+		}
+		
 
 	}
 
