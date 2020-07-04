@@ -8,24 +8,39 @@ public class Clientes extends Persona {
 	private float saldo;
 	private String usuario;
 	private String password;
+	private String tipo;
 	
 	public Clientes() {
 	}
 
 	public Clientes(String nombre, String apellido1, String apellido2, String dni, String email, int edad, char sexo,
-			Date fechaAlta, Date fechaBaja, int puntosAcumulados, float saldo, String usuario, String password) {
+			Date fechaAlta, Date fechaBaja, int puntosAcumulados, float saldo, String usuario, String password,
+			String tipo) {
 		super(nombre, apellido1, apellido2, dni, email, edad, sexo, fechaAlta, fechaBaja);
 		this.puntosAcumulados = puntosAcumulados;
 		this.saldo = saldo;
 		this.usuario = usuario;
 		this.password = password;
+		this.tipo = tipo;
 	}
 
-	public Clientes(int puntosAcumulados, float saldo, String usuario, String password) {
+
+
+	public Clientes(int puntosAcumulados, float saldo, String usuario, String password, String tipo) {
+		super();
 		this.puntosAcumulados = puntosAcumulados;
 		this.saldo = saldo;
 		this.usuario = usuario;
 		this.password = password;
+		this.tipo = tipo;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public int getPuntosAcumulados() {
@@ -100,8 +115,10 @@ public class Clientes extends Persona {
 	@Override
 	public String toString() {
 		return "Clientes [puntosAcumulados=" + puntosAcumulados + ", saldo=" + saldo + ", usuario=" + usuario
-				+ ", password=" + password + "]";
+				+ ", password=" + password + ", tipo=" + tipo + "]";
 	}
+
+	
 	
 	
 	

@@ -20,6 +20,12 @@ public  class MenuGeneral {
 		System.out.println("==================================\n");
 	};
 	
+	public static void menuCliente() {
+		System.out.println("0. VOLVER AL LOGIN");
+		System.out.println("1. Ver ficha de cliente");
+		System.out.println("2. Realizar compra");
+	};
+	
 	public static void menuRRHH() {
 		System.out.println("8. Imprimir nomina trabajador");
 		System.out.println("9. Imprimir nominas por departamento");

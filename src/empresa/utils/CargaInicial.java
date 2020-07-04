@@ -9,10 +9,10 @@ public class CargaInicial {
 	
 	public  void cargaInicial(Empresa empresa) {
 		
-		Clientes cliente1 = new Clientes(0,1000,"c1","paso");
-		Clientes cliente2 = new Clientes(4,1300,"c2","paso");
-		Clientes cliente3 = new Clientes(6,900,"c3","paso");
-		Clientes cliente4 = new Clientes(0,2000,"c4","paso");
+		Clientes cliente1 = new Clientes(0,1000,"c1","paso","cliente");
+		Clientes cliente2 = new Clientes(4,1300,"c2","paso","cliente");
+		Clientes cliente3 = new Clientes(6,900,"c3","paso","cliente");
+		Clientes cliente4 = new Clientes(0,2000,"c4","paso","cliente");
 		
 	empresa.addCliente("c1", cliente1);
 	empresa.addCliente("c2", cliente2);

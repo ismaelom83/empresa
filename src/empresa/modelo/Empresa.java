@@ -119,6 +119,23 @@ public class Empresa {
 
 	}
 	
+	public Clientes validarClientes(String usuario,String password) {
+		boolean b = false;
+		if (clientes.containsKey(usuario)) {
+			Clientes c1 = getClientes().get(usuario);
+			if (c1.getPassword().equals(password)) {
+				b = true;
+				return c1;
+			} 
+		}
+		if (!b) {
+			System.out.println("Credenciales invalidos");
+		}
+			
+			return null;		
+	}
+	
+	
 	public Mensajes enviarCorreo(String codigoTrabajador, String asunto, String cuerpo,Empresa empresa) {
 		boolean b = false;
 		Mensajes m = new Mensajes(new Date(),new Date(),asunto,cuerpo,true,false);
