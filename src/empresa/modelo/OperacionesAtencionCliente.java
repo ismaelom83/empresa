@@ -24,18 +24,32 @@ public class OperacionesAtencionCliente implements InterfaceTrabajadores, Interf
 	}
 
 	@Override
-	public void modificarCliente() {
-		// TODO Auto-generated method stub
-		InterfaceAtencionCliente.super.modificarCliente();
+	public Clientes modificarCliente(String usuario, Empresa empresa,String password) {
+		
+		clientes =	empresa.getClientes();
+	
+		
+		if (clientes.containsKey(usuario)) {
+			Clientes c =  empresa.getClientes().get(usuario);
+			System.out.println("Password del cliente actualizada");
+			c.setPassword(password);
+	return c;
+		}else {
+			System.out.println("El cliente: "+usuario+" no existe");
+		}
+		return null;
 	}
 
 	public void buscarCliente(String usuario, Empresa empresa) {
+		
 	clientes =	empresa.getClientes();
 		if (clientes.containsKey(usuario)) {
 			Clientes c1 = empresa.getClientes().get(usuario);
 			System.out.println("Cliente encontrado");
 			System.out.println("Saldo: "+c1.getSaldo()+"\n"+"PuntosAcumulados: "+c1.getPuntosAcumulados()+"\n"+"Usuario: "+c1.getUsuario()+"\n"+"Categoria Cliente: "+c1.getCategoria()+"\n"+"Id cliente: "+c1.getIdCliente()+"\n");
 			 
+		}else {
+			System.out.println("El cliente: "+usuario+" no existe");
 		}
 	}
 

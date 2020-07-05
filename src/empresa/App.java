@@ -29,7 +29,7 @@ public class App {
 		CargaInicial cargaInicial = new CargaInicial();
 		EnvioMensajes envioMensajes = new EnvioMensajes();
 		OperacionesBD opeBd = new OperacionesBD();
-		Empresa empresa = new Empresa("my empresa", new HashMap<String, Departamento>());
+		Empresa empresa = new Empresa("my empresa", new HashMap<String, Departamento>(),new HashMap<String, Clientes>());
 		OpreracionesTrabajadores optra = null;
 //		Departamento departamento = new Departamento();
 		Trabajadores comprobarTrabajador = new Trabajadores();
@@ -63,13 +63,10 @@ public class App {
 				
 		
 
-				if (comprobarTrabajador != null) {
-					
-					sh.swhichTrabajadores(comprobarTrabajador,empresa);
-					logger.info(String.format("Trabajador encontrado."));
-					
-					
+				if (comprobarTrabajador != null) {				
+					sh.swhichTrabajadores(comprobarTrabajador,empresa);								
 				}
+				
 				if (comprobarCliente!=null) {
 					sh.swhichClientes(comprobarCliente,empresa);
 					logger.info(String.format("Cliente encontrado."));

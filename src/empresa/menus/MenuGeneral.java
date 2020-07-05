@@ -65,10 +65,9 @@ public  class MenuGeneral {
 	
 	public static void menuAtencionCliente() {
 		System.out.println("8. Modificar cliente.");
-		System.out.println("9. Imprimir ficha de cliente");
-		System.out.println("10. Buscar cliente");
-		System.out.println("11. Enviar promoción a un cliente");
-		System.out.println("12. Enviar promoción a todos los clientes");
+		System.out.println("9. Buscar cliente");
+		System.out.println("10. Enviar promoción a un cliente");
+		System.out.println("11. Enviar promoción a todos los clientes");
 	};
 	
 	public static void menuDireccion() {

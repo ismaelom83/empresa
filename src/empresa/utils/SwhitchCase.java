@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import empresa.conexion.OperacionesBD;
 import empresa.menus.MenuGeneral;
+import empresa.modelo.CategoriaCliente;
 import empresa.modelo.Clientes;
 import empresa.modelo.Departamento;
 import empresa.modelo.Empresa;
@@ -305,30 +306,32 @@ public class SwhitchCase {
 					logger.info(String.format("Mensaje leido.", methodName));
 					break;
 				case 8:
-					String nombre1, nombre2 = null;
-					System.out.println("Introduce el nombre del cliente que quieres actualizar");
+					String nombre1,password;
+				
+					System.out.println("Introduce el nombre de usuario del cliente que quieres actualizar");
 					nombre1 = sc.nextLine();
+					
+					System.out.println("Introduce la nueva password para el cliente");
+					password = sc.nextLine();
 
-					System.out.println("Introduce el nuevo nombre para el cliente");
-					nombre2 = sc.nextLine();
 
-					opeBd.mostrarActualizarNombre(nombre2, nombre1);
+					operacionesAT.modificarCliente(nombre1, empresa,password);
 
 					break;
 				case 9:
-					String nombreCliente = null;
+					String nombreCliente;
 					System.out.println("Imprimir ficha cliente");
 					System.out.println("Introduce cliente a buscar por su usuario: ");
 					nombreCliente = sc.nextLine();
 				operacionesAT.buscarCliente(nombreCliente,empresa);
 					break;
-				case 10:
-					String nombre;
-					System.out.println("Busqueda de cliente por nombre");
-					System.out.println("Introduce nombre");
-					nombre = sc.nextLine();
-					opeBd.mostrarConsultarNombre(nombre);
-					break;
+//				case 10:
+//					String nombreCliente2;
+//					System.out.println("Modificar Cliente: ");
+//					System.out.println("Introduce el nombre de usuario del cliente: ");
+//					nombreCliente2 = sc.nextLine();
+//					operacionesAT.modificarCliente(nombreCliente2, empresa);
+//					break;
 				case 7:
 					envioMensajes.enviarMensajeJefeEmpresa(empresa, men, enviarMensajeTrabajador);
 					break;
