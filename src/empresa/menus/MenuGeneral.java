@@ -24,6 +24,8 @@ public  class MenuGeneral {
 		System.out.println("0. VOLVER AL LOGIN");
 		System.out.println("1. Ver ficha de cliente");
 		System.out.println("2. Realizar compra");
+		System.out.println("3. Comprobar numero de compras con hilo");
+		System.out.println("4. Parar Hilo");
 	};
 	
 	public static void menuRRHH() {

@@ -23,7 +23,7 @@ public class ContadorRegistrosHilos implements Runnable {
 					comparadorNuevo = opeBD.mostrarHilos();
 		
 				if (comparadorNuevo != comparadorOriginal) {
-					System.out.println("Nuevo numero de registros controlado por el hilo"+"\n"+"Numero de registros anterior: "+comparadorOriginal+"\n"+"Numero de registros nuevo: "+comparadorNuevo);
+					System.out.println("Nueva compra controlada por el hilo"+"\n"+"Numero de compras anterior: "+comparadorOriginal+"\n"+"Numero de compras nuevo: "+comparadorNuevo);
 					comparadorOriginal = comparadorNuevo;
 				}			
 			}

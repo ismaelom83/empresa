@@ -90,7 +90,6 @@ public class Empresa {
 
 	}
 	public Trabajadores validarTrabajador(String usuario, String password, Empresa empresa) {
-		boolean b = false;
 		String claveDepartamento;
 		Iterator<String> departamentos = empresa.getDepartamento().keySet().iterator();
 		while (departamentos.hasNext()) {
@@ -102,7 +101,6 @@ public class Empresa {
 				clave = trabajadores.next();
 				if (clave.equals(usuario)) {
 					Trabajadores t = d.getTrabajador().get(clave);
-					b = true;
 					if (t.getContrasenya().equals(password)) {
 						return t;
 					} else {
@@ -111,25 +109,18 @@ public class Empresa {
 				}
 			}
 		}
-		if (!b) {
-			System.out.println("No existe el usuario: "+usuario);
-		}
 				
 		return null;
 
 	}
 	
 	public Clientes validarClientes(String usuario,String password) {
-		boolean b = false;
+
 		if (clientes.containsKey(usuario)) {
 			Clientes c1 = getClientes().get(usuario);
 			if (c1.getPassword().equals(password)) {
-				b = true;
 				return c1;
 			} 
-		}
-		if (!b) {
-			System.out.println("Credenciales invalidos");
 		}
 			
 			return null;		
@@ -142,14 +133,15 @@ public class Empresa {
 		String claveDepartamento;
 		Iterator<String> departamentos = empresa.getDepartamento().keySet().iterator();
 		while (departamentos.hasNext()) {
+			System.out.println("d");
 			claveDepartamento = departamentos.next();
 			Departamento d = empresa.getDepartamento().get(claveDepartamento);
 			String clave;
 			Iterator<String> trabajadores = d.getTrabajador().keySet().iterator();
 			while (trabajadores.hasNext()) {
+				System.out.println("t");
 				clave = trabajadores.next();
 				if (clave.equals(codigoTrabajador)) {
-					Trabajadores t = d.getTrabajador().get(clave);
 					System.out.println("se ha encontrado el trabajador");
 					b = true;
 					System.out.println("Mensaje construido y enviado al usuario: "+codigoTrabajador);
@@ -159,13 +151,15 @@ public class Empresa {
 			}
 		}
 		if (!b) {
-			System.out.println("No existe el usuario: "+codigoTrabajador);
+			System.out.println("No existe el usuario: "+codigoTrabajador+" 	Prueba");
 		}
 		
 		
 		return null;
 		
 	}
+	
+	
 	
 
 

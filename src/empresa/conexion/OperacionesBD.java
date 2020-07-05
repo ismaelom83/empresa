@@ -309,7 +309,7 @@ public class OperacionesBD {
 
 	public int consultarInsecionHilos() throws SQLException {
 		int n = 0;
-		String query = "SELECT count(*) FROM articulos";
+		String query = "SELECT count(*) FROM compras";
 		ResultSet rs = st.executeQuery(query);
 		while (rs.next()) {
 			n = rs.getInt(1);
@@ -346,6 +346,50 @@ public class OperacionesBD {
 			}
 		}
 		return n;
+	}
+	
+	public void realizarCompra(int idArticulo,int idCliente) throws SQLException {
+
+		System.out.println("Cpomprar articulos:");
+		PreparedStatement ps = conexion.prepareStatement("INSERT INTO compras  (idArticulo,idCliente) " + "VALUES (?, ?)");
+
+		ps.setInt(1, idArticulo);
+		ps.setInt(2, idCliente);
+
+		int resultado = ps.executeUpdate();
+		System.out.println("Se ha comprado el producto exitosamente");
+		if (resultado == 0) {
+			System.out.println("NO se ha podido comprar");
+		}
+		// conexion.commit();
+
+		ps.close();
+	}
+	
+	public void mostrarCompra(int idArticulo,int idCliente) {
+
+		conexion = Conexion.getConexion();
+		try {
+			if (conexion != null) {
+
+				st = conexion.createStatement();
+				realizarCompra(idArticulo, idCliente);
+
+			} else {
+				System.out.println("Conexion no realizada");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			if (conexion != null) {
+				try {
+					conexion.rollback();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}
 	}
 
 }

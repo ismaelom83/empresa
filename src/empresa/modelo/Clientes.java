@@ -9,31 +9,51 @@ public class Clientes extends Persona {
 	private String usuario;
 	private String password;
 	private String tipo;
+	private int idCliente;
 	
 	public Clientes() {
 	}
 
+
+
 	public Clientes(String nombre, String apellido1, String apellido2, String dni, String email, int edad, char sexo,
 			Date fechaAlta, Date fechaBaja, int puntosAcumulados, float saldo, String usuario, String password,
-			String tipo) {
+			String tipo, int idCliente) {
 		super(nombre, apellido1, apellido2, dni, email, edad, sexo, fechaAlta, fechaBaja);
 		this.puntosAcumulados = puntosAcumulados;
 		this.saldo = saldo;
 		this.usuario = usuario;
 		this.password = password;
 		this.tipo = tipo;
+		this.idCliente = idCliente;
 	}
 
+	
 
 
-	public Clientes(int puntosAcumulados, float saldo, String usuario, String password, String tipo) {
+	public Clientes(int puntosAcumulados, float saldo, String usuario, String password, String tipo, int idCliente) {
 		super();
 		this.puntosAcumulados = puntosAcumulados;
 		this.saldo = saldo;
 		this.usuario = usuario;
 		this.password = password;
 		this.tipo = tipo;
+		this.idCliente = idCliente;
 	}
+
+
+
+	public int getIdCliente() {
+		return idCliente;
+	}
+
+
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
+
+
 
 	public String getTipo() {
 		return tipo;
@@ -75,16 +95,22 @@ public class Clientes extends Persona {
 		this.password = password;
 	}
 
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + idCliente;
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + puntosAcumulados;
 		result = prime * result + Float.floatToIntBits(saldo);
+		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -95,6 +121,8 @@ public class Clientes extends Persona {
 		if (getClass() != obj.getClass())
 			return false;
 		Clientes other = (Clientes) obj;
+		if (idCliente != other.idCliente)
+			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;
@@ -104,6 +132,11 @@ public class Clientes extends Persona {
 			return false;
 		if (Float.floatToIntBits(saldo) != Float.floatToIntBits(other.saldo))
 			return false;
+		if (tipo == null) {
+			if (other.tipo != null)
+				return false;
+		} else if (!tipo.equals(other.tipo))
+			return false;
 		if (usuario == null) {
 			if (other.usuario != null)
 				return false;
@@ -112,11 +145,15 @@ public class Clientes extends Persona {
 		return true;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Clientes [puntosAcumulados=" + puntosAcumulados + ", saldo=" + saldo + ", usuario=" + usuario
-				+ ", password=" + password + ", tipo=" + tipo + "]";
+				+ ", password=" + password + ", tipo=" + tipo + ", idCliente=" + idCliente + "]";
 	}
+
+
 
 	
 	

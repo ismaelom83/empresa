@@ -27,7 +27,7 @@ public class App {
 		OperacionesBD opeBd = new OperacionesBD();
 		Empresa empresa = new Empresa("my empresa", new HashMap<String, Departamento>());
 		OpreracionesTrabajadores optra = null;
-		Departamento departamento = new Departamento();
+//		Departamento departamento = new Departamento();
 		Trabajadores comprobarTrabajador = new Trabajadores();
 		Trabajadores enviarMensajeTrabajador = new Trabajadores();
 		Clientes comprobarCliente = new Clientes();
@@ -51,7 +51,6 @@ public class App {
 			contrasenya = sc.nextLine();
 
 			System.out.println("");
-			
 			comprobarCliente = empresa.validarClientes(usuario, contrasenya);
 			comprobarTrabajador = empresa.validarTrabajador(usuario, contrasenya, empresa);
 
@@ -60,10 +59,10 @@ public class App {
 
 				if (comprobarTrabajador != null) {
 					
-					sh.swhichTrabajadores(comprobarTrabajador);
+					sh.swhichTrabajadores(comprobarTrabajador,empresa);
 				}
 				if (comprobarCliente!=null) {
-					sh.swhichClientes(comprobarCliente);
+					sh.swhichClientes(comprobarCliente,empresa);
 				}
 				
 

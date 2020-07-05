@@ -9,10 +9,10 @@ public class CargaInicial {
 	
 	public  void cargaInicial(Empresa empresa) {
 		
-		Clientes cliente1 = new Clientes(0,1000,"c1","paso","cliente");
-		Clientes cliente2 = new Clientes(4,1300,"c2","paso","cliente");
-		Clientes cliente3 = new Clientes(6,900,"c3","paso","cliente");
-		Clientes cliente4 = new Clientes(0,2000,"c4","paso","cliente");
+		Clientes cliente1 = new Clientes(0,1000,"c1","paso","cliente",1);
+		Clientes cliente2 = new Clientes(4,1300,"c2","paso","cliente",2);
+		Clientes cliente3 = new Clientes(6,900,"c3","paso","cliente",3);
+		Clientes cliente4 = new Clientes(0,2000,"c4","paso","cliente",4);
 		
 	empresa.addCliente("c1", cliente1);
 	empresa.addCliente("c2", cliente2);
@@ -53,7 +53,7 @@ public class CargaInicial {
 		Trabajadores trabajador4 = new Trabajadores("marta", "sanchez", 3000, "paso", true, "jefeEmpresa", "4",
 				"jefeEmpresa","direccion");
 		Trabajadores trabajador5 = new Trabajadores("natalia", "Salvador", 1000, "paso", false, "atencionCliente",
-				"5", "t5","atencionCliente");
+				"5", "t2a","atencionCliente");
 		Trabajadores trabajador14 = new Trabajadores("javier", "sanchez", 1200, "paso", false, "atencionCliente",
 				"14", "t1a","atencionCliente");
 

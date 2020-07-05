@@ -1,6 +1,6 @@
 package empresa.utils;
 
-import java.nio.charset.CodingErrorAction;
+
 import java.util.Scanner;
 
 import empresa.modelo.Empresa;
@@ -9,7 +9,6 @@ import empresa.modelo.Trabajadores;
 
 public class EnvioMensajes {
 	static Scanner sc;
-	
 	public  void enviarMensajeMain(Empresa empresa,Mensajes men,Trabajadores enviarMensajeTrabajador) {
 		sc = new Scanner(System.in);
 		
