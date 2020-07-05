@@ -5,10 +5,15 @@ import java.util.Scanner;
 
 import empresa.modelo.Empresa;
 import empresa.modelo.Mensajes;
+import empresa.modelo.OpreracionesTrabajadores;
 import empresa.modelo.Trabajadores;
 
 public class EnvioMensajes {
+	
 	static Scanner sc;
+	
+	OpreracionesTrabajadores optra = new OpreracionesTrabajadores();
+	
 	public  void enviarMensajeMain(Empresa empresa,Mensajes men,Trabajadores enviarMensajeTrabajador) {
 		sc = new Scanner(System.in);
 		
@@ -26,7 +31,7 @@ public class EnvioMensajes {
 		System.out.println("Introduce Cuerpo Mensaje: ");
 		cuerpo = sc.nextLine();
 
-		men = empresa.enviarCorreo(codigoTrabajador, asunto, cuerpo, empresa);
+		men = optra.enviarCorreo(codigoTrabajador, asunto, cuerpo, empresa);
 
 		System.out.println(men);
 

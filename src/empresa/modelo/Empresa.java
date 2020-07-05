@@ -78,8 +78,7 @@ public class Empresa {
 			System.out.println("este usuario ya existe");
 		} else {
 			clientes.put(usuario, c);
-		}
-		
+		}	
 
 	}
 
@@ -126,6 +125,14 @@ public class Empresa {
 			return null;		
 	}
 	
+//	public void buscarCliente(String usuario) {
+//		if (clientes.containsKey(usuario)) {
+//			Clientes c1 = getClientes().get(usuario);
+//			System.out.println("Cliente encontrado");
+//			System.out.println("Saldo: "+c1.getSaldo()+"\n"+"PuntosAcumulados: "+c1.getPuntosAcumulados()+"\n"+"Usuario: "+c1.getUsuario()+"\n"+"Categoria Cliente: "+c1.getCategoria()+"\n"+"Id cliente: "+c1.getIdCliente()+"\n");
+//			 
+//		}
+//	}
 	
 	public Mensajes enviarCorreo(String codigoTrabajador, String asunto, String cuerpo,Empresa empresa) {
 		boolean b = false;

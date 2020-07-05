@@ -1,9 +1,15 @@
 package empresa.modelo;
 
+import java.util.HashMap;
+
 import empresa.abtraccion.InterfaceAtencionCliente;
 import empresa.abtraccion.InterfaceTrabajadores;
 
 public class OperacionesAtencionCliente implements InterfaceTrabajadores, InterfaceAtencionCliente{
+	
+	Empresa empresa = new Empresa();
+	private HashMap<String, Clientes> clientes = new HashMap<>();
+	Clientes c = new Clientes();
 
 	private Trabajadores t;
 
@@ -23,10 +29,14 @@ public class OperacionesAtencionCliente implements InterfaceTrabajadores, Interf
 		InterfaceAtencionCliente.super.modificarCliente();
 	}
 
-	@Override
-	public void imprimirFichaCliente() {
-		// TODO Auto-generated method stub
-		InterfaceAtencionCliente.super.imprimirFichaCliente();
+	public void buscarCliente(String usuario, Empresa empresa) {
+	clientes =	empresa.getClientes();
+		if (clientes.containsKey(usuario)) {
+			Clientes c1 = empresa.getClientes().get(usuario);
+			System.out.println("Cliente encontrado");
+			System.out.println("Saldo: "+c1.getSaldo()+"\n"+"PuntosAcumulados: "+c1.getPuntosAcumulados()+"\n"+"Usuario: "+c1.getUsuario()+"\n"+"Categoria Cliente: "+c1.getCategoria()+"\n"+"Id cliente: "+c1.getIdCliente()+"\n");
+			 
+		}
 	}
 
 	@Override

@@ -3,6 +3,9 @@ package empresa;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import empresa.conexion.OperacionesBD;
 import empresa.menus.MenuGeneral;
 import empresa.modelo.Clientes;
@@ -19,9 +22,10 @@ import empresa.utils.SwhitchCase;
 public class App {
 
 	static Scanner sc;
-
+	private static Logger logger = LogManager.getLogger(SwhitchCase.class);
 	@SuppressWarnings("null")
 	public static void main(String[] args) {
+		String methodName = App.class.getSimpleName() + ".main()";
 		CargaInicial cargaInicial = new CargaInicial();
 		EnvioMensajes envioMensajes = new EnvioMensajes();
 		OperacionesBD opeBd = new OperacionesBD();
@@ -39,6 +43,7 @@ public class App {
 		String usuario, contrasenya = null;
 		cargaInicial.cargaInicial(empresa);
 		int opcionFinal = 0;
+		
 
 		do {
 
@@ -56,13 +61,18 @@ public class App {
 
 			if (comprobarTrabajador != null || comprobarCliente != null) {
 				
+		
 
 				if (comprobarTrabajador != null) {
 					
 					sh.swhichTrabajadores(comprobarTrabajador,empresa);
+					logger.info(String.format("Trabajador encontrado."));
+					
+					
 				}
 				if (comprobarCliente!=null) {
 					sh.swhichClientes(comprobarCliente,empresa);
+					logger.info(String.format("Cliente encontrado."));
 				}
 				
 

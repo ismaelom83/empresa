@@ -4,11 +4,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import empresa.conexion.Conexion;;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
+import empresa.conexion.Conexion;
+import empresa.utils.SwhitchCase;;
 
 public class OperacionesBD {
+	
+	private static Logger logger = LogManager.getLogger(SwhitchCase.class);
+	String methodName = SwhitchCase.class.getSimpleName() + ".OperacionesBD()";
+	
 	private static Statement st;
-
 	private java.sql.Connection conexion;
 
 	public void consultar() throws SQLException {
@@ -164,8 +174,8 @@ public class OperacionesBD {
 				st = conexion.createStatement();
 				insertarArticulos(nombre, precio);
 
-//				st.close();
-//				Conexion.desconectar();
+				st.close();
+				Conexion.desconectar();
 			} else {
 				System.out.println("Conexion no realizada");
 			}
@@ -203,7 +213,8 @@ public class OperacionesBD {
 
 				st = conexion.createStatement();
 				borrarArticulos(id);
-
+				st.close();
+				Conexion.desconectar();
 			} else {
 				System.out.println("Conexion no realizada");
 			}
@@ -250,7 +261,8 @@ public class OperacionesBD {
 
 				st = conexion.createStatement();
 				buscarArticulo(id);
-
+				st.close();
+				Conexion.desconectar();
 			} else {
 				System.out.println("Conexion no realizada");
 			}
@@ -289,7 +301,8 @@ public class OperacionesBD {
 
 				st = conexion.createStatement();
 				consultarTodosArticulos();
-
+				st.close();
+				Conexion.desconectar();
 			} else {
 				System.out.println("Conexion no realizada");
 			}
@@ -350,18 +363,18 @@ public class OperacionesBD {
 	
 	public void realizarCompra(int idArticulo,int idCliente) throws SQLException {
 
-		System.out.println("Cpomprar articulos:");
+		System.out.println("Comprar articulos:");
 		PreparedStatement ps = conexion.prepareStatement("INSERT INTO compras  (idArticulo,idCliente) " + "VALUES (?, ?)");
 
 		ps.setInt(1, idArticulo);
 		ps.setInt(2, idCliente);
 
 		int resultado = ps.executeUpdate();
-		System.out.println("Se ha comprado el producto exitosamente");
+		logger.info(String.format("Se ha comprado el articulo.", methodName));	
 		if (resultado == 0) {
 			System.out.println("NO se ha podido comprar");
 		}
-		// conexion.commit();
+//		 conexion.commit();
 
 		ps.close();
 	}
@@ -373,7 +386,12 @@ public class OperacionesBD {
 			if (conexion != null) {
 
 				st = conexion.createStatement();
-				realizarCompra(idArticulo, idCliente);
+				try {
+					realizarCompra(idArticulo, idCliente);
+				} catch (MySQLIntegrityConstraintViolationException ex) {
+					System.out.println("El articulo con id: "+idArticulo+" no existe");
+				}
+				
 
 			} else {
 				System.out.println("Conexion no realizada");
@@ -390,6 +408,7 @@ public class OperacionesBD {
 				}
 			}
 		}
+		
 	}
 
 }

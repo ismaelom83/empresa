@@ -1,7 +1,8 @@
 package empresa.modelo;
 
+import java.util.Date;
 import java.util.Iterator;
-import java.util.List;
+
 
 import empresa.abtraccion.InterfaceTrabajadores;
 
@@ -18,9 +19,9 @@ public class OpreracionesTrabajadores implements InterfaceTrabajadores {
 	}
 
 	@Override
-	public Trabajadores enviarCorreo(String codigoTrabajador, String asunto, String cuerpo) {
+	public Mensajes enviarCorreo(String codigoTrabajador, String asunto, String cuerpo,Empresa empresa) {
 		boolean b = false;
-		Empresa empresa = null;
+		Mensajes m = new Mensajes(new Date(),new Date(),asunto,cuerpo,true,false);
 		String claveDepartamento;
 		Iterator<String> departamentos = empresa.getDepartamento().keySet().iterator();
 		while (departamentos.hasNext()) {
@@ -31,10 +32,11 @@ public class OpreracionesTrabajadores implements InterfaceTrabajadores {
 			while (trabajadores.hasNext()) {
 				clave = trabajadores.next();
 				if (clave.equals(codigoTrabajador)) {
-					Trabajadores t = d.getTrabajador().get(clave);
 					System.out.println("se ha encontrado el trabajador");
 					b = true;
-					System.out.println("En el departamento");
+					System.out.println("Mensaje construido y enviado al usuario: "+codigoTrabajador);
+				
+					return m;
 				}
 			}
 		}

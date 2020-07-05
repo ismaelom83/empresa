@@ -1,5 +1,6 @@
 package empresa.utils;
 
+import empresa.modelo.CategoriaCliente;
 import empresa.modelo.Clientes;
 import empresa.modelo.Departamento;
 import empresa.modelo.Empresa;
@@ -9,10 +10,10 @@ public class CargaInicial {
 	
 	public  void cargaInicial(Empresa empresa) {
 		
-		Clientes cliente1 = new Clientes(0,1000,"c1","paso","cliente",1);
-		Clientes cliente2 = new Clientes(4,1300,"c2","paso","cliente",2);
-		Clientes cliente3 = new Clientes(6,900,"c3","paso","cliente",3);
-		Clientes cliente4 = new Clientes(0,2000,"c4","paso","cliente",4);
+		Clientes cliente1 = new Clientes(0,1000,"c1","paso","cliente",1,CategoriaCliente.PREMIUM);
+		Clientes cliente2 = new Clientes(4,1300,"c2","paso","cliente",2,CategoriaCliente.NORMAL);
+		Clientes cliente3 = new Clientes(6,900,"c3","paso","cliente",3,CategoriaCliente.PREMIUM);
+		Clientes cliente4 = new Clientes(0,2000,"c4","paso","cliente",4,CategoriaCliente.NORMAL);
 		
 	empresa.addCliente("c1", cliente1);
 	empresa.addCliente("c2", cliente2);

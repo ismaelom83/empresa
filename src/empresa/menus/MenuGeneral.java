@@ -61,13 +61,11 @@ public  class MenuGeneral {
 		System.out.println("14. Informe de artículo menos comprado");
 		System.out.println("15. Informe de artículo más comprado entre fechas");
 		System.out.println("16. Informe de artículo menos comprado entre fechas");
-		System.out.println("17. Hilos de comprobacion tabla articulos");
-		System.out.println("18. Stop hilo de comprobacion");
 	};
 	
 	public static void menuAtencionCliente() {
 		System.out.println("8. Modificar cliente.");
-		System.out.println("9. Imprimir ficha de todos los cliente");
+		System.out.println("9. Imprimir ficha de cliente");
 		System.out.println("10. Buscar cliente");
 		System.out.println("11. Enviar promoción a un cliente");
 		System.out.println("12. Enviar promoción a todos los clientes");
