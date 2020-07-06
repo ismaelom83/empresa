@@ -126,35 +126,6 @@ public class Empresa {
 //	}
 	
 
-	
-	public void enviarCorreo(String codigoTrabajador, String asunto, String cuerpo,Empresa empresa,Trabajadores t) {
-		boolean b = false;
-		Mensajes m = new Mensajes(new Date(),new Date(),asunto,cuerpo,true,false);
-		String claveDepartamento;
-		Iterator<String> departamentos = empresa.getDepartamento().keySet().iterator();
-		while (departamentos.hasNext()) {
-			claveDepartamento = departamentos.next();
-			Departamento d = empresa.getDepartamento().get(claveDepartamento);
-			String clave;
-			Iterator<String> trabajadores = d.getTrabajador().keySet().iterator();
-			while (trabajadores.hasNext()) {
-				clave = trabajadores.next();
-				if (clave.equals(codigoTrabajador)) {
-					System.out.println("se ha encontrado el trabajador");
-					b = true;
-					System.out.println("Mensaje construido y enviado al usuario: "+codigoTrabajador);
-				
-					t.addMensaje(m);
-				}
-			}
-		}
-		if (!b) {
-			System.out.println("No existe el usuario: "+codigoTrabajador+" 	Prueba");
-		}
-			
-		
-		
-	}
 
 
 }

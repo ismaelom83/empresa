@@ -18,10 +18,9 @@ public class OpreracionesTrabajadores implements InterfaceTrabajadores {
 		this.t = t;
 	}
 
-	@Override
-	public Mensajes enviarCorreo(String codigoTrabajador, String asunto, String cuerpo,Empresa empresa) {
+	public Trabajadores enviarCorreo(String codigoTrabajador,Empresa empresa) {
 		boolean b = false;
-		Mensajes m = new Mensajes(new Date(),new Date(),asunto,cuerpo,true,false);
+	
 		String claveDepartamento;
 		Iterator<String> departamentos = empresa.getDepartamento().keySet().iterator();
 		while (departamentos.hasNext()) {
@@ -35,16 +34,15 @@ public class OpreracionesTrabajadores implements InterfaceTrabajadores {
 					System.out.println("se ha encontrado el trabajador");
 					b = true;
 					System.out.println("Mensaje construido y enviado al usuario: "+codigoTrabajador);
-				
-					return m;
+					Trabajadores t = d.getTrabajador().get(clave);
+					return t;
 				}
 			}
 		}
 		if (!b) {
-			System.out.println("No existe el usuario: "+codigoTrabajador);
+			System.out.println("No existe el usuario: "+codigoTrabajador+" 	Prueba");
 		}
-		
-		
+			
 		return null;
 		
 	}

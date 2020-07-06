@@ -31,18 +31,20 @@ public class CargaInicial {
 		empresa.addDepartamento("3", departamentoRRHH);
 		empresa.addDepartamento("4", departamentoDireccion);
 		empresa.addDepartamento("5", departamentoAtencionCliente);
+		
+		
 
-		Trabajadores trabajador1 = new Trabajadores("Jose", "Salvador", 1050, "paso", false, "compras", "1",
+		Trabajadores trabajador1 = new Trabajadores("Jose", "Salvador", 1050, "paso", false, "trabajadorCompras", "1",
 				"t1c","compras");
-		Trabajadores trabajador6 = new Trabajadores("pepe", "sanchez", 1055, "paso", false, "compras", "6",
+		Trabajadores trabajador6 = new Trabajadores("pepe", "sanchez", 1055, "paso", false, "trabajadorCompras", "6",
 				"t2c","compras");
 		Trabajadores trabajador7 = new Trabajadores("juan", "sanchez", 1255, "paso", false, "administrativo", "7",
 				"adminCompras","compras");
 		Trabajadores trabajador8 = new Trabajadores("marta", "sanchez", 1555, "paso", true, "jefeCompras", "8",
 				"jefeCompras","compras");
-		Trabajadores trabajador2 = new Trabajadores("ismael", "heras", 1100, "paso", false, "ventas", "2",
+		Trabajadores trabajador2 = new Trabajadores("ismael", "heras", 1100, "paso", false, "trabajadorVentas", "2",
 				"t1v","ventas");
-		Trabajadores trabajador9 = new Trabajadores("juana", "heras", 1200, "paso", false, "ventas", "9",
+		Trabajadores trabajador9 = new Trabajadores("juana", "heras", 1200, "paso", false, "trabajadorVentas", "9",
 				"t2v","ventas");
 		Trabajadores trabajador10 = new Trabajadores("luisa", "perez", 1300, "paso", false, "administrativo", "10",
 				"adminVentas","ventas");
@@ -53,9 +55,9 @@ public class CargaInicial {
 		Trabajadores trabajador13 = new Trabajadores("mario", "hernandez", 2500, "paso", true, "jefeRRHH", "13", "jefeRRHH","RRHH");
 		Trabajadores trabajador4 = new Trabajadores("marta", "sanchez", 3000, "paso", true, "jefeEmpresa", "4",
 				"jefeEmpresa","direccion");
-		Trabajadores trabajador5 = new Trabajadores("natalia", "Salvador", 1000, "paso", false, "atencionCliente",
+		Trabajadores trabajador5 = new Trabajadores("natalia", "Salvador", 1000, "paso", false, "trabajadorAtencionCliente",
 				"5", "t2a","atencionCliente");
-		Trabajadores trabajador14 = new Trabajadores("javier", "sanchez", 1200, "paso", false, "atencionCliente",
+		Trabajadores trabajador14 = new Trabajadores("javier", "sanchez", 1200, "paso", false, "trabajadorAtencionCliente",
 				"14", "t1a","atencionCliente");
 
 		departamentoCompras.altaTrabajador(trabajador1.getUsuario(), trabajador1);

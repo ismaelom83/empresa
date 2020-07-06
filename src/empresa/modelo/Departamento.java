@@ -95,6 +95,10 @@ public class Departamento {
 	}
 
 
+	public void enviarCorreo() {
+		
+	}
+	
 public void altaTrabajador(String c,Trabajadores t) {
 	trabajador.put(c,t);
 	

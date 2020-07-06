@@ -1,6 +1,7 @@
 package empresa.modelo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Trabajadores extends Persona {
@@ -109,7 +110,6 @@ public class Trabajadores extends Persona {
 		this.contrasenya = contrasenya;
 	}
 
-
 	
 	@Override
 	public String toString() {
@@ -120,9 +120,9 @@ public class Trabajadores extends Persona {
 	}
 
 	public void comprobarMensajes() {
-		for (Mensajes mensajes : mensaje) {
-			System.out.println(mensajes);
-		}
+		Iterator<Mensajes> it = mensaje.iterator();
+		while(it.hasNext())
+			  System.out.println(it.next());
 	}
 	
 

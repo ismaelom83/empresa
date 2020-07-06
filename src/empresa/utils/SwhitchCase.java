@@ -1,6 +1,8 @@
 package empresa.utils;
 
 
+
+import java.util.ArrayList;
 import java.util.Scanner;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -43,19 +45,19 @@ public class SwhitchCase {
 	}
 	
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void swhichTrabajadores(Trabajadores comprobarTrabajador,Empresa empresa) {
 	
 		System.out.println("Se ha encontrado al trabajador: " + comprobarTrabajador.getNombre() + " "
 				+ comprobarTrabajador.getApellido1() + "\n" + "En el departamento de: "
-				+ comprobarTrabajador.getDepartamento().toUpperCase());
-		System.out.println("");
+				+ comprobarTrabajador.getDepartamento().toUpperCase()+"\n"+"Tipo trabajador: "+comprobarTrabajador.getTipo()+"\n");
 		switch (comprobarTrabajador.getDepartamento()) {
 		case "ventas":
 			int opcion = 0;
 
 			do {
 				System.out.println("");
-				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getTipo().toUpperCase()+" **************");
+				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getDepartamento().toUpperCase()+" **************");
 				System.out.println("");
 				MenuGeneral.menuPrincipal();
 				MenuGeneral.menuVentas();
@@ -63,19 +65,25 @@ public class SwhitchCase {
 				System.out.println("");
 				switch (opcion) {
 				case 1:
-					envioMensajes.enviarMensajeMain(empresa, men, enviarMensajeTrabajador);
-					logger.info(String.format("%1$s: >>>>>> Muensaje enviado a compañero.", methodName));
+					envioMensajes.enviarMensajeMain(empresa);
+					logger.info(String.format("%1$s: >>>>>> Mensaje enviado a compañero.", methodName));
 					break;
 				case 2:
 					System.out.println("Mensajes no contestados: ");
-					System.out.println(enviarMensajeTrabajador.getMensaje());
+					
 					break;
 				case 3:
+					ArrayList mensaje = new ArrayList();
 					System.out.println("Mensajes no Leidos: ");
-					System.out.println(enviarMensajeTrabajador.getMensaje());
+					comprobarTrabajador.comprobarMensajes();
+					comprobarTrabajador.setMensaje(mensaje);
+					break;
+				case 6:
+					String codigoTrabajador = "jefeVentas";
+					envioMensajes.enviarMensajeJefeDepartamento(empresa, codigoTrabajador);
 					break;
 				case 7:
-					envioMensajes.enviarMensajeJefeEmpresa(empresa, men, enviarMensajeTrabajador);
+					envioMensajes.enviarMensajeJefeEmpresa(empresa);
 					break;
 				case 10:
 					opeBd.mostrarBuscarTodosArticulos();
@@ -106,7 +114,7 @@ public class SwhitchCase {
 			int opcion2 = 0;
 			do {
 				System.out.println("");
-				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getTipo().toUpperCase()+" **************");
+				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getDepartamento().toUpperCase()+" **************");
 				System.out.println("");
 				MenuGeneral.menuPrincipal();
 				MenuGeneral.menuCompras();
@@ -114,19 +122,25 @@ public class SwhitchCase {
 				System.out.println("");
 				switch (opcion2) {
 				case 1:
-					envioMensajes.enviarMensajeMain(empresa, men, enviarMensajeTrabajador);
+					envioMensajes.enviarMensajeMain(empresa);
 					logger.info(String.format("%1$s: >>>>>> Muensaje enviado a compañero.", methodName));
 					break;
 				case 2:
 					System.out.println("Mensajes no contestados: ");
-					System.out.println(enviarMensajeTrabajador.getMensaje());
+					
 					break;
 				case 3:
+					ArrayList mensaje = new ArrayList();
 					System.out.println("Mensajes no Leidos: ");
-					System.out.println(enviarMensajeTrabajador.getMensaje());
+					comprobarTrabajador.comprobarMensajes();
+					comprobarTrabajador.setMensaje(mensaje);
+					break;
+				case 6:
+					String codigoTrabajador = "jefeCompras";
+					envioMensajes.enviarMensajeJefeDepartamento(empresa, codigoTrabajador);
 					break;
 				case 7:
-					envioMensajes.enviarMensajeJefeEmpresa(empresa, men, enviarMensajeTrabajador);
+					envioMensajes.enviarMensajeJefeEmpresa(empresa);
 					break;
 				case 8:
 					String nombre = null;
@@ -214,7 +228,7 @@ public class SwhitchCase {
 			int opcion3 = 0;
 			do {
 				System.out.println("");
-				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getTipo().toUpperCase()+" **************");
+				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getDepartamento().toUpperCase()+" **************");
 				System.out.println("");
 				MenuGeneral.menuPrincipal();
 				MenuGeneral.menuRRHH();
@@ -222,19 +236,25 @@ public class SwhitchCase {
 				System.out.println("");
 				switch (opcion3) {
 				case 1:
-					envioMensajes.enviarMensajeMain(empresa, men, enviarMensajeTrabajador);
+					envioMensajes.enviarMensajeMain(empresa);
 					logger.info(String.format("%1$s: >>>>>> Muensaje enviado a compañero.", methodName));
 					break;
 				case 2:
 					System.out.println("Mensajes no contestados: ");
-					System.out.println(enviarMensajeTrabajador.getMensaje());
+					
 					break;
 				case 3:
+					ArrayList mensaje = new ArrayList();
 					System.out.println("Mensajes no Leidos: ");
-					System.out.println(enviarMensajeTrabajador.getMensaje());
+					comprobarTrabajador.comprobarMensajes();
+					comprobarTrabajador.setMensaje(mensaje);
+					break;
+				case 6:
+					String codigoTrabajador = "jefeRRHH";
+					envioMensajes.enviarMensajeJefeDepartamento(empresa, codigoTrabajador);
 					break;
 				case 7:
-					envioMensajes.enviarMensajeJefeEmpresa(empresa, men, enviarMensajeTrabajador);
+					envioMensajes.enviarMensajeJefeEmpresa(empresa);
 					break;
 				case 0:
 					System.out.println("HAS VUELTO AL LOGIN!");
@@ -250,7 +270,7 @@ public class SwhitchCase {
 			int opcion4 = 0;
 			do {
 				System.out.println("");
-				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getTipo().toUpperCase()+" **************");
+				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getDepartamento().toUpperCase()+" **************");
 				System.out.println("");
 				MenuGeneral.menuPrincipal();
 				MenuGeneral.menuDireccion();
@@ -258,16 +278,18 @@ public class SwhitchCase {
 				System.out.println("");
 				switch (opcion4) {
 				case 1:
-					envioMensajes.enviarMensajeMain(empresa, men, enviarMensajeTrabajador);
+					envioMensajes.enviarMensajeMain(empresa);
 					logger.info(String.format("%1$s: >>>>>> Muensaje enviado a compañero.", methodName));
 					break;
 				case 2:
 					System.out.println("Mensajes no contestados: ");
-					System.out.println(enviarMensajeTrabajador.getMensaje());
+					
 					break;
 				case 3:
+					ArrayList mensaje = new ArrayList();
 					System.out.println("Mensajes no Leidos: ");
-					System.out.println(enviarMensajeTrabajador.getMensaje());
+					comprobarTrabajador.comprobarMensajes();
+					comprobarTrabajador.setMensaje(mensaje);
 					break;
 				case 0:
 					System.out.println("HAS VUELTO AL LOGIN!");
@@ -283,7 +305,7 @@ public class SwhitchCase {
 			int opcion5 = 0;
 			do {
 				System.out.println("");
-				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getTipo().toUpperCase()+" **************");
+				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getDepartamento().toUpperCase()+" **************");
 				System.out.println("");
 				MenuGeneral.menuPrincipal();
 				MenuGeneral.menuAtencionCliente();
@@ -291,18 +313,18 @@ public class SwhitchCase {
 				System.out.println("");
 				switch (opcion5) {
 				case 1:
-					envioMensajes.enviarMensajeMain(empresa, men, enviarMensajeTrabajador);
+					envioMensajes.enviarMensajeMain(empresa);
 					logger.info(String.format("%1$s: >>>>>> Muensaje enviado a compañero.", methodName));
 					break;
 				case 2:
 					System.out.println("Mensajes no contestados: ");
-					System.out.println(enviarMensajeTrabajador.getMensaje());
-					logger.info(String.format("Mensaje leido.", methodName));
+					
 					break;
 				case 3:
+					ArrayList mensaje = new ArrayList();
 					System.out.println("Mensajes no Leidos: ");
-					System.out.println(enviarMensajeTrabajador.getMensaje());
-					logger.info(String.format("Mensaje leido.", methodName));
+					comprobarTrabajador.comprobarMensajes();
+					comprobarTrabajador.setMensaje(mensaje);
 					break;
 				case 8:
 					String nombre1,password;
@@ -334,7 +356,7 @@ public class SwhitchCase {
 //					operacionesAT.modificarCliente(nombreCliente2, empresa);
 //					break;
 				case 7:
-					envioMensajes.enviarMensajeJefeEmpresa(empresa, men, enviarMensajeTrabajador);
+					envioMensajes.enviarMensajeJefeEmpresa(empresa);
 					break;
 				case 0:
 					System.out.println("HAS VUELTO AL LOGIN!");
