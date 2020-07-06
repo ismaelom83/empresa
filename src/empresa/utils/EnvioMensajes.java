@@ -31,11 +31,11 @@ public class EnvioMensajes {
 		System.out.println("Introduce Cuerpo Mensaje: ");
 		cuerpo = sc.nextLine();
 
-		men = optra.enviarCorreo(codigoTrabajador, asunto, cuerpo, empresa);
+		 empresa.enviarCorreo(codigoTrabajador, asunto, cuerpo, empresa,enviarMensajeTrabajador);
 
 		System.out.println(men);
 
-		enviarMensajeTrabajador.addMensaje(men);
+//		enviarMensajeTrabajador.addMensaje(men);
 	}
 	
 	public  void enviarMensajeJefeEmpresa(Empresa empresa,Mensajes men,Trabajadores enviarMensajeTrabajador) {
@@ -50,11 +50,11 @@ public class EnvioMensajes {
 		System.out.println("Introduce Cuerpo Mensaje: ");
 		cuerpo = sc.nextLine();
 
-		men = empresa.enviarCorreo(codigoTrabajador, asunto, cuerpo, empresa);
+	 empresa.enviarCorreo(codigoTrabajador, asunto, cuerpo, empresa,enviarMensajeTrabajador);
 
 		System.out.println(men);
 
-		enviarMensajeTrabajador.addMensaje(men);
+//		enviarMensajeTrabajador.addMensaje(men);
 	}
 	
 

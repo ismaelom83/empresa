@@ -1,7 +1,5 @@
 package empresa.modelo;
 
-public enum CategoriaCliente {
-	
-	NORMAL,PREMIUM;
-	
+public enum CategoriaCliente {	
+	NORMAL,PREMIUM;	
 }

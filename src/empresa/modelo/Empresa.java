@@ -72,15 +72,15 @@ public class Empresa {
 	}
 	
 
-	public void addCliente(String usuario, Clientes c) {
-
-		if (clientes.containsKey(c.getUsuario())) {
-			System.out.println("este usuario ya existe");
-		} else {
-			clientes.put(usuario, c);
-		}	
-
-	}
+//	public void addCliente(String usuario, Clientes c) {
+//
+//		if (clientes.containsKey(c.getUsuario())) {
+//			System.out.println("este usuario ya existe");
+//		} else {
+//			clientes.put(usuario, c);
+//		}	
+//
+//	}
 
 	public void buscarDepartamento() {
 		for (String key : departamento.keySet()) {
@@ -113,61 +113,48 @@ public class Empresa {
 
 	}
 	
-	public Clientes validarClientes(String usuario,String password) {
-
-		if (clientes.containsKey(usuario)) {
-			Clientes c1 = getClientes().get(usuario);
-			if (c1.getPassword().equals(password)) {
-				return c1;
-			} 
-		}
-			
-			return null;		
-	}
-	
-//	public void buscarCliente(String usuario) {
+//	public Clientes validarClientes(String usuario,String password) {
+//
 //		if (clientes.containsKey(usuario)) {
 //			Clientes c1 = getClientes().get(usuario);
-//			System.out.println("Cliente encontrado");
-//			System.out.println("Saldo: "+c1.getSaldo()+"\n"+"PuntosAcumulados: "+c1.getPuntosAcumulados()+"\n"+"Usuario: "+c1.getUsuario()+"\n"+"Categoria Cliente: "+c1.getCategoria()+"\n"+"Id cliente: "+c1.getIdCliente()+"\n");
-//			 
+//			if (c1.getPassword().equals(password)) {
+//				return c1;
+//			} 
 //		}
+//			
+//			return null;		
 //	}
 	
-	public Mensajes enviarCorreo(String codigoTrabajador, String asunto, String cuerpo,Empresa empresa) {
+
+	
+	public void enviarCorreo(String codigoTrabajador, String asunto, String cuerpo,Empresa empresa,Trabajadores t) {
 		boolean b = false;
 		Mensajes m = new Mensajes(new Date(),new Date(),asunto,cuerpo,true,false);
 		String claveDepartamento;
 		Iterator<String> departamentos = empresa.getDepartamento().keySet().iterator();
 		while (departamentos.hasNext()) {
-			System.out.println("d");
 			claveDepartamento = departamentos.next();
 			Departamento d = empresa.getDepartamento().get(claveDepartamento);
 			String clave;
 			Iterator<String> trabajadores = d.getTrabajador().keySet().iterator();
 			while (trabajadores.hasNext()) {
-				System.out.println("t");
 				clave = trabajadores.next();
 				if (clave.equals(codigoTrabajador)) {
 					System.out.println("se ha encontrado el trabajador");
 					b = true;
 					System.out.println("Mensaje construido y enviado al usuario: "+codigoTrabajador);
 				
-					return m;
+					t.addMensaje(m);
 				}
 			}
 		}
 		if (!b) {
 			System.out.println("No existe el usuario: "+codigoTrabajador+" 	Prueba");
 		}
+			
 		
-		
-		return null;
 		
 	}
-	
-	
-	
 
 
 }

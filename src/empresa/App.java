@@ -1,5 +1,6 @@
 package empresa;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -33,9 +34,9 @@ public class App {
 		OpreracionesTrabajadores optra = null;
 //		Departamento departamento = new Departamento();
 		Trabajadores comprobarTrabajador = new Trabajadores();
-		Trabajadores enviarMensajeTrabajador = new Trabajadores();
-		Clientes comprobarCliente = new Clientes();
+		Trabajadores enviarMensajeTrabajador = new Trabajadores();		
 		ContadorRegistrosHilos c1 = new ContadorRegistrosHilos();
+		Clientes comprobarCliente = new Clientes();
 		Clientes cliente = new Clientes();
 		Mensajes men = null;
 		SwhitchCase sh = new SwhitchCase();
@@ -46,7 +47,8 @@ public class App {
 		
 
 		do {
-
+			
+//			boolean comprobarCliente = false;
 			MenuGeneral.menuLogin();
 			System.out.println("Introduce Usuario : ");
 
@@ -56,20 +58,22 @@ public class App {
 			contrasenya = sc.nextLine();
 
 			System.out.println("");
-			comprobarCliente = empresa.validarClientes(usuario, contrasenya);
-			comprobarTrabajador = empresa.validarTrabajador(usuario, contrasenya, empresa);
-
+			
+		
+		
+				comprobarCliente =	opeBd.mostrarLogin(usuario,contrasenya,cliente);
+				
+				comprobarTrabajador = empresa.validarTrabajador(usuario, contrasenya, empresa);
+				
 			if (comprobarTrabajador != null || comprobarCliente != null) {
 				
-		
 
 				if (comprobarTrabajador != null) {				
 					sh.swhichTrabajadores(comprobarTrabajador,empresa);								
 				}
 				
 				if (comprobarCliente!=null) {
-					sh.swhichClientes(comprobarCliente,empresa);
-					logger.info(String.format("Cliente encontrado."));
+					sh.swhichClientes(empresa,comprobarCliente);
 				}
 				
 

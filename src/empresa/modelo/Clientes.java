@@ -174,6 +174,13 @@ public class Clientes extends Persona {
 
 
 
+	public void setCategoria(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 
 
 

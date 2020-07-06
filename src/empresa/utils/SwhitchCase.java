@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 
 import empresa.conexion.OperacionesBD;
 import empresa.menus.MenuGeneral;
-import empresa.modelo.CategoriaCliente;
 import empresa.modelo.Clientes;
 import empresa.modelo.Departamento;
 import empresa.modelo.Empresa;
@@ -315,7 +314,7 @@ public class SwhitchCase {
 					password = sc.nextLine();
 
 
-					operacionesAT.modificarCliente(nombre1, empresa,password);
+					opeBd.mostrarActualizarNombre(password, nombre1);
 
 					break;
 				case 9:
@@ -323,7 +322,9 @@ public class SwhitchCase {
 					System.out.println("Imprimir ficha cliente");
 					System.out.println("Introduce cliente a buscar por su usuario: ");
 					nombreCliente = sc.nextLine();
-				operacionesAT.buscarCliente(nombreCliente,empresa);
+					System.out.println("*********FICHA DEL CLIENTE***************");
+					System.out.println("");
+					opeBd.mostrarConsultarNombre(nombreCliente);
 					break;
 //				case 10:
 //					String nombreCliente2;
@@ -346,16 +347,16 @@ public class SwhitchCase {
 		}// sw1
 	}
 
-	public void swhichClientes(Clientes comprobarCliente,Empresa empresa) {
-		System.out.println("Se ha encontrado al cliente: "+comprobarCliente.getUsuario()+"\n"+"Eres un cliente: "+
-	comprobarCliente.getCategoria());
+	public void swhichClientes(Empresa empresa,Clientes comprobarClientes) {
 		System.out.println("");
-		switch (comprobarCliente.getTipo()) {
+		System.out.println("Bienvenido Cliente: "+comprobarClientes.getUsuario()+"\n"+"Tienes un saldo de: "+
+		comprobarClientes.getSaldo()+"€"+"\n");
+		switch (comprobarClientes.getTipo()) {
 		case "cliente":
 			int opcion6 = 0;
 			do {
 				System.out.println("");
-				System.out.println("******* MENU DEL " + comprobarCliente.getTipo().toUpperCase()+" ***************");
+				System.out.println("******* MENU DEL CLIENTE ***************");
 				System.out.println("");
 				MenuGeneral.menuCliente();
 				opcion6 = Integer.parseInt(sc.nextLine());
@@ -364,17 +365,19 @@ public class SwhitchCase {
 				switch (opcion6) {
 				case 1:
 					System.out.println("*********FICHA DEL CLIENTE***************");
-					System.out.println("El nombre de usuario del clienete es: "+comprobarCliente.getUsuario()+"\n"+
-					"Categoria cliente: "+comprobarCliente.getCategoria()+"\n"+
-				 "Tu saldo es de: "+comprobarCliente.getSaldo()+"€"+"\n"+"Puntos Acumulados: "+comprobarCliente.getPuntosAcumulados()+
-				 "\n"+"Id del cliente: "+comprobarCliente.getIdCliente()+"\n");
+					System.out.println("");
+					opeBd.mostrarConsultarNombre(comprobarClientes.getUsuario());
+					
+					
+					System.out.println("");
+					
 					break;
 				case 2:
 					int idArticulo;
 					System.out.println("Realizar compra de articulo");
 					System.out.println("Inserte el codigo del articulo que quieres comprar");
 					idArticulo = Integer.parseInt(sc.nextLine());
-					opeBd.mostrarCompra(idArticulo, comprobarCliente.getIdCliente());
+					opeBd.mostrarCompra(idArticulo, comprobarClientes.getIdCliente());
 					
 					break;
 				case 3:

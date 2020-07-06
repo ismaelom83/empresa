@@ -10,15 +10,15 @@ public class CargaInicial {
 	
 	public  void cargaInicial(Empresa empresa) {
 		
-		Clientes cliente1 = new Clientes(0,1000,"c1","paso","cliente",1,CategoriaCliente.PREMIUM);
-		Clientes cliente2 = new Clientes(4,1300,"c2","paso","cliente",2,CategoriaCliente.NORMAL);
-		Clientes cliente3 = new Clientes(6,900,"c3","paso","cliente",3,CategoriaCliente.PREMIUM);
-		Clientes cliente4 = new Clientes(0,2000,"c4","paso","cliente",4,CategoriaCliente.NORMAL);
-		
-	empresa.addCliente("c1", cliente1);
-	empresa.addCliente("c2", cliente2);
-	empresa.addCliente("c3", cliente3);
-	empresa.addCliente("c4", cliente4);
+//		Clientes cliente1 = new Clientes(0,1000,"c1","paso","cliente",1,CategoriaCliente.PREMIUM);
+//		Clientes cliente2 = new Clientes(4,1300,"c2","paso","cliente",2,CategoriaCliente.NORMAL);
+//		Clientes cliente3 = new Clientes(6,900,"c3","paso","cliente",3,CategoriaCliente.PREMIUM);
+//		Clientes cliente4 = new Clientes(0,2000,"c4","paso","cliente",4,CategoriaCliente.NORMAL);
+//		
+//	empresa.addCliente("c1", cliente1);
+//	empresa.addCliente("c2", cliente2);
+//	empresa.addCliente("c3", cliente3);
+//	empresa.addCliente("c4", cliente4);
 		
 		Departamento departamentoCompras = new Departamento(Departamento.DEPARTAMENTO_COMPRAS, "1");
 		Departamento departamentoVentas = new Departamento(Departamento.DEPARTAMENTO_VENTAS, "2");
