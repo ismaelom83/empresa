@@ -113,6 +113,28 @@ public class Empresa {
 
 	}
 	
+	public Mensajes buscarMensajeTrabajador(String usuario,Empresa empresa,Mensajes men) {
+		String claveDepartamento;
+		Iterator<String> departamentos = empresa.getDepartamento().keySet().iterator();
+		while (departamentos.hasNext()) {
+			claveDepartamento = departamentos.next();
+			Departamento d = empresa.getDepartamento().get(claveDepartamento);
+			String clave;
+			Iterator<String> trabajadores = d.getTrabajador().keySet().iterator();
+			while (trabajadores.hasNext()) {
+				clave = trabajadores.next();
+				if (clave.equals(usuario)) {
+					Trabajadores t = d.getTrabajador().get(clave);
+					return men;
+				}
+			}
+		}
+				
+		return null;
+
+	}
+
+	
 //	public Clientes validarClientes(String usuario,String password) {
 //
 //		if (clientes.containsKey(usuario)) {

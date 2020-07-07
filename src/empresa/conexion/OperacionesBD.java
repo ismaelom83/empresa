@@ -431,7 +431,7 @@ public class OperacionesBD {
 			c.setPassword(rs.getString(3));
 			c.setPuntosAcumulados(rs.getInt(4));
 			c.setSaldo(rs.getFloat(5));
-			c.setCategoria(rs.getString(6));
+//			c.setCategoria(rs.getString(6));
 			c.setTipo(rs.getString(7));		
 		}
 

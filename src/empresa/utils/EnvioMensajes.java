@@ -15,7 +15,7 @@ public class EnvioMensajes {
 	OpreracionesTrabajadores optra = new OpreracionesTrabajadores();
 	Trabajadores tab = new Trabajadores();
 
-	public void enviarMensajeMain(Empresa empresa) {
+	public void enviarMensajeMain(Empresa empresa,String usuarioEnvio) {
 		sc = new Scanner(System.in);
 
 		String asunto, cuerpo, codigoTrabajador;
@@ -35,12 +35,14 @@ public class EnvioMensajes {
 
 
 
-		Mensajes mensaje = new Mensajes(new Date(), new Date(), asunto, cuerpo, true, false);
-		tab.addMensaje(mensaje);
+		Mensajes mensaje = new Mensajes(new Date(), new Date(), asunto, cuerpo, false, false,usuarioEnvio);
+		if (tab!=null) {
+			tab.addMensaje(mensaje);
+		}
 
 	}
 
-	public void enviarMensajeJefeEmpresa(Empresa empresa) {
+	public void enviarMensajeJefeEmpresa(Empresa empresa,String usuarioEnvio) {
 		sc = new Scanner(System.in);
 		String asunto, cuerpo, codigoTrabajador;
 		codigoTrabajador = "jefeEmpresa";
@@ -52,16 +54,16 @@ public class EnvioMensajes {
 		System.out.println("Introduce Cuerpo Mensaje: ");
 		cuerpo = sc.nextLine();
 
-		tab = optra.enviarCorreo(codigoTrabajador, asunto, cuerpo, empresa);
-		Mensajes mensaje = new Mensajes(new Date(), new Date(), asunto, cuerpo, true, false);
+		tab = optra.enviarCorreo(codigoTrabajador, empresa);
+		Mensajes mensaje = new Mensajes(new Date(), new Date(), asunto, cuerpo, false, false,usuarioEnvio);
+		System.out.println(mensaje);
 		tab.addMensaje(mensaje);
 
 	}
 	
-	public void enviarMensajeJefeDepartamento(Empresa empresa,String codigoTrabajador) {
+	public void enviarMensajeJefeDepartamento(Empresa empresa,String codigoTrabajador,String usuarioEnvio) {
 		sc = new Scanner(System.in);
 		String asunto, cuerpo;
-//		codigoTrabajador = tab.isJefeOnO(codigoTrabajador);
 		System.out.println("Introduce mensaje");
 		System.out.println("Introduce Asunto Mensaje: ");
 
@@ -70,8 +72,8 @@ public class EnvioMensajes {
 		System.out.println("Introduce Cuerpo Mensaje: ");
 		cuerpo = sc.nextLine();
 
-		tab = optra.enviarCorreo(codigoTrabajador, asunto, cuerpo, empresa);
-		Mensajes mensaje = new Mensajes(new Date(), new Date(), asunto, cuerpo, true, false);
+		tab = optra.enviarCorreo(codigoTrabajador, empresa);
+		Mensajes mensaje = new Mensajes(new Date(), new Date(), asunto, cuerpo, false, false,usuarioEnvio);
 		tab.addMensaje(mensaje);
 
 	}

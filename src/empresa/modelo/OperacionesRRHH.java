@@ -2,6 +2,7 @@ package empresa.modelo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -28,9 +29,9 @@ public class OperacionesRRHH implements InterfaceTrabajadores, InterfaceRRHH {
 	}
 
 	@Override
-	public void nominaTrabajador() {
-		// TODO Auto-generated method stub
-		InterfaceRRHH.super.nominaTrabajador();
+	public void nominaTrabajador(Trabajadores operacionesTrabajadores) {
+		System.out.println("LA NOMINA DEL TRABAJADOR "+operacionesTrabajadores.getNombre()+
+				" "+operacionesTrabajadores.getApellido1()+" es "+operacionesTrabajadores.getSalario()+"€");
 	}
 
 	@Override
@@ -59,6 +60,8 @@ public class OperacionesRRHH implements InterfaceTrabajadores, InterfaceRRHH {
 //		}
 //		return correcto;
 //	}
+	
+	
 
 	@Override
 	public void bajaLogicaTrabajador() {
@@ -66,12 +69,25 @@ public class OperacionesRRHH implements InterfaceTrabajadores, InterfaceRRHH {
 		InterfaceRRHH.super.bajaLogicaTrabajador();
 	}
 
-	@Override
-	public void buscarTrabajador() {
-		System.out.println("");
-		for (Trabajadores trabajadores : trabajador) {
-			System.out.println(trabajadores);
+	public Trabajadores buscarTrabajador(String usuario,Empresa empresa) {
+		String claveDepartamento;
+		Iterator<String> departamentos = empresa.getDepartamento().keySet().iterator();
+		while (departamentos.hasNext()) {
+			claveDepartamento = departamentos.next();
+			Departamento d = empresa.getDepartamento().get(claveDepartamento);
+			String clave;
+			Iterator<String> trabajadores = d.getTrabajador().keySet().iterator();
+			while (trabajadores.hasNext()) {
+				clave = trabajadores.next();
+				if (clave.equals(usuario)) {
+					Trabajadores t = d.getTrabajador().get(clave);
+					return t;
+					
+				}
+			}
 		}
+				
+		return null;
 
 	}
 
@@ -82,15 +98,15 @@ public class OperacionesRRHH implements InterfaceTrabajadores, InterfaceRRHH {
 
 
 	@Override
-	public void comprobarCorreoNoContestado() {
+	public void comprobarCorreoNoContestado(ArrayList<Mensajes> mensajeComprobar) {
 		// TODO Auto-generated method stub
-		InterfaceTrabajadores.super.comprobarCorreoNoContestado();
+	
 	}
 
 	@Override
-	public void comprobarCorreoNoLeido() {
+	public void comprobarCorreoNoLeido(ArrayList<Mensajes> mensajeComprobar) {
 		// TODO Auto-generated method stub
-		InterfaceTrabajadores.super.comprobarCorreoNoLeido();
+	
 	}
 
 	@Override
@@ -108,13 +124,6 @@ public class OperacionesRRHH implements InterfaceTrabajadores, InterfaceRRHH {
 		// TODO Auto-generated method stub
 		InterfaceTrabajadores.super.comprobarCorreoIntervalo();
 	}
-//
-//	public static void crearTrabajadores() {
-//		trabajador.add(new Trabajadores("Ismael", "Heras", 1000, new ArrayList<Mensajes>(), "1111", true));
-//		trabajador.add(new Trabajadores("Jose", "Salvador", 1050, new ArrayList<Mensajes>(), "2222", false));
-//		trabajador.add(new Trabajadores("Pedro", "Rodriguez", 2000, new ArrayList<Mensajes>(), "3333", false));
-//		trabajador.add(new Trabajadores("Raul", "Gonzalez", 3000, new ArrayList<Mensajes>(), "4444", true));
-//
-//	}
+
 
 }

@@ -1,8 +1,8 @@
 package empresa.modelo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
-
 
 import empresa.abtraccion.InterfaceTrabajadores;
 
@@ -18,9 +18,9 @@ public class OpreracionesTrabajadores implements InterfaceTrabajadores {
 		this.t = t;
 	}
 
-	public Trabajadores enviarCorreo(String codigoTrabajador,Empresa empresa) {
+	public Trabajadores enviarCorreo(String codigoTrabajador, Empresa empresa) {
 		boolean b = false;
-	
+
 		String claveDepartamento;
 		Iterator<String> departamentos = empresa.getDepartamento().keySet().iterator();
 		while (departamentos.hasNext()) {
@@ -33,30 +33,52 @@ public class OpreracionesTrabajadores implements InterfaceTrabajadores {
 				if (clave.equals(codigoTrabajador)) {
 					System.out.println("se ha encontrado el trabajador");
 					b = true;
-					System.out.println("Mensaje construido y enviado al usuario: "+codigoTrabajador);
+					System.out.println("Mensaje construido y enviado al usuario: " + codigoTrabajador);
 					Trabajadores t = d.getTrabajador().get(clave);
 					return t;
 				}
 			}
 		}
 		if (!b) {
-			System.out.println("No existe el usuario: "+codigoTrabajador+" 	Prueba");
+			System.out.println("No existe el usuario: " + codigoTrabajador);
 		}
-			
+
 		return null;
-		
+
 	}
 
 	@Override
-	public void comprobarCorreoNoContestado() {
-		// TODO Auto-generated method stub
-		InterfaceTrabajadores.super.comprobarCorreoNoContestado();
+	public void comprobarCorreoNoContestado(ArrayList<Mensajes> mensajeComprobar) {
+		for (Mensajes m : mensajeComprobar) {
+			if (m.isConfirmacionContestado() == false) {
+				System.out.println(
+						"El usuario que te manda el correo es: " + m.getUsuarioEnvio() + "\n" + "Fecha de envio:"
+								+ m.getFechaEnvio() + "\n" + "Asunto: " + m.getAsunto() + "\n" + "Cuerpo del mensaje:"
+								+ m.getCuerpo() + "\n" + "Este mensaje esta leido? " + m.isConfirmacionLeido() + "\n"
+								+ "Este mensaje Esta contestado? " + m.isConfirmacionContestado() + "\n");
+				System.out.println("");
+				System.out.println("------------------------------------------------------------");
+			} else {
+				System.out.println("Los mensajes han sido contestados");
+			}
+		}
 	}
 
 	@Override
-	public void comprobarCorreoNoLeido() {
-		// TODO Auto-generated method stub
-		InterfaceTrabajadores.super.comprobarCorreoNoLeido();
+	public void comprobarCorreoNoLeido(ArrayList<Mensajes> mensajeComprobar) {
+		for (Mensajes m : mensajeComprobar) {
+			if (m.isConfirmacionLeido() == false) {
+				System.out.println(
+						"El usuario que te manda el correo es: " + m.getUsuarioEnvio() + "\n" + "Fecha de envio:"
+								+ m.getFechaEnvio() + "\n" + "Asunto: " + m.getAsunto() + "\n" + "Cuerpo del mensaje:"
+								+ m.getCuerpo() + "\n" + "Este mensaje esta leido? " + m.isConfirmacionLeido() + "\n"
+								+ "Este mensaje Esta contestado? " + m.isConfirmacionContestado() + "\n");
+				System.out.println("");
+				System.out.println("------------------------------------------------------------");
+			} else {
+				System.out.println("Los mensajes han sido leidos");
+			}
+		}
 	}
 
 	@Override

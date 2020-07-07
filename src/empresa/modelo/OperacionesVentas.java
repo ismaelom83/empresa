@@ -1,5 +1,7 @@
 package empresa.modelo;
 
+import java.util.ArrayList;
+
 import empresa.abtraccion.InterfaceCompraVenta;
 import empresa.abtraccion.InterfaceTrabajadores;
 import empresa.abtraccion.InterfaceVentas;
@@ -107,15 +109,15 @@ public class OperacionesVentas implements InterfaceVentas, InterfaceTrabajadores
 	
 
 	@Override
-	public void comprobarCorreoNoContestado() {
+	public void comprobarCorreoNoContestado(ArrayList<Mensajes> mensajeComprobar) {
 		// TODO Auto-generated method stub
-		InterfaceTrabajadores.super.comprobarCorreoNoContestado();
+	
 	}
 
 	@Override
-	public void comprobarCorreoNoLeido() {
+	public void comprobarCorreoNoLeido(ArrayList<Mensajes> mensajeComprobar) {
 		// TODO Auto-generated method stub
-		InterfaceTrabajadores.super.comprobarCorreoNoLeido();
+		
 	}
 
 	@Override

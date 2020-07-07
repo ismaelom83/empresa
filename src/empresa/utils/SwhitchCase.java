@@ -1,8 +1,7 @@
 package empresa.utils;
 
-
-
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -14,6 +13,7 @@ import empresa.modelo.Departamento;
 import empresa.modelo.Empresa;
 import empresa.modelo.Mensajes;
 import empresa.modelo.OperacionesAtencionCliente;
+import empresa.modelo.OperacionesRRHH;
 import empresa.modelo.OpreracionesTrabajadores;
 import empresa.modelo.Trabajadores;
 import empresa.thread.ContadorRegistrosHilos;
@@ -27,37 +27,40 @@ public class SwhitchCase {
 	CargaInicial cargaInicial = new CargaInicial();
 	EnvioMensajes envioMensajes = new EnvioMensajes();
 	OperacionesBD opeBd = new OperacionesBD();
-	OpreracionesTrabajadores optra = null;
+	OpreracionesTrabajadores optra = new OpreracionesTrabajadores();
 	Departamento departamento = new Departamento();
 	Trabajadores comprobarTrabajador = new Trabajadores();
-	Trabajadores enviarMensajeTrabajador = new Trabajadores();
+	Trabajadores operacionesTrabajadores = new Trabajadores();
 	Clientes comprobarCliente = new Clientes();
 	ContadorRegistrosHilos c1 = new ContadorRegistrosHilos();
 	OperacionesAtencionCliente operacionesAT = new OperacionesAtencionCliente();
+	OperacionesRRHH opRH = new OperacionesRRHH();
 	Clientes cliente = new Clientes();
 	Mensajes men = new Mensajes();
-	
+	ArrayList<Mensajes> mensajeComprobar = new ArrayList<>();
+
 	String usuario, contrasenya = null;
 	int opcionFinal = 0;
 
 	public SwhitchCase() {
 		super();
 	}
-	
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void swhichTrabajadores(Trabajadores comprobarTrabajador,Empresa empresa) {
-	
+	public void swhichTrabajadores(Trabajadores comprobarTrabajador, Empresa empresa) {
+
 		System.out.println("Se ha encontrado al trabajador: " + comprobarTrabajador.getNombre() + " "
 				+ comprobarTrabajador.getApellido1() + "\n" + "En el departamento de: "
-				+ comprobarTrabajador.getDepartamento().toUpperCase()+"\n"+"Tipo trabajador: "+comprobarTrabajador.getTipo()+"\n");
+				+ comprobarTrabajador.getDepartamento().toUpperCase() + "\n" + "Tipo trabajador: "
+				+ comprobarTrabajador.getTipo() + "\n");
 		switch (comprobarTrabajador.getDepartamento()) {
 		case "ventas":
 			int opcion = 0;
 
 			do {
 				System.out.println("");
-				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getDepartamento().toUpperCase()+" **************");
+				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getDepartamento().toUpperCase()
+						+ " **************");
 				System.out.println("");
 				MenuGeneral.menuPrincipal();
 				MenuGeneral.menuVentas();
@@ -65,25 +68,28 @@ public class SwhitchCase {
 				System.out.println("");
 				switch (opcion) {
 				case 1:
-					envioMensajes.enviarMensajeMain(empresa);
-					logger.info(String.format("%1$s: >>>>>> Mensaje enviado a compañero.", methodName));
+					envioMensajes.enviarMensajeMain(empresa, comprobarTrabajador.getUsuario());
 					break;
 				case 2:
 					System.out.println("Mensajes no contestados: ");
-					
+					System.out.println("");
+					mensajeComprobar = comprobarTrabajador.comprobarMensajes(comprobarTrabajador);
+					optra.comprobarCorreoNoContestado(mensajeComprobar);
 					break;
 				case 3:
-					ArrayList mensaje = new ArrayList();
 					System.out.println("Mensajes no Leidos: ");
-					comprobarTrabajador.comprobarMensajes();
-					comprobarTrabajador.setMensaje(mensaje);
+					System.out.println("");
+					mensajeComprobar = comprobarTrabajador.comprobarMensajes(comprobarTrabajador);
+					optra.comprobarCorreoNoLeido(mensajeComprobar);
+					comprobarTrabajador.setearNoLeidos(mensajeComprobar);
 					break;
 				case 6:
 					String codigoTrabajador = "jefeVentas";
-					envioMensajes.enviarMensajeJefeDepartamento(empresa, codigoTrabajador);
+					envioMensajes.enviarMensajeJefeDepartamento(empresa, codigoTrabajador,
+							comprobarTrabajador.getUsuario());
 					break;
 				case 7:
-					envioMensajes.enviarMensajeJefeEmpresa(empresa);
+					envioMensajes.enviarMensajeJefeEmpresa(empresa, comprobarTrabajador.getUsuario());
 					break;
 				case 10:
 					opeBd.mostrarBuscarTodosArticulos();
@@ -114,7 +120,8 @@ public class SwhitchCase {
 			int opcion2 = 0;
 			do {
 				System.out.println("");
-				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getDepartamento().toUpperCase()+" **************");
+				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getDepartamento().toUpperCase()
+						+ " **************");
 				System.out.println("");
 				MenuGeneral.menuPrincipal();
 				MenuGeneral.menuCompras();
@@ -122,25 +129,28 @@ public class SwhitchCase {
 				System.out.println("");
 				switch (opcion2) {
 				case 1:
-					envioMensajes.enviarMensajeMain(empresa);
-					logger.info(String.format("%1$s: >>>>>> Muensaje enviado a compañero.", methodName));
+					envioMensajes.enviarMensajeMain(empresa, comprobarTrabajador.getUsuario());
 					break;
 				case 2:
 					System.out.println("Mensajes no contestados: ");
-					
+					System.out.println("");
+					mensajeComprobar = comprobarTrabajador.comprobarMensajes(comprobarTrabajador);
+					optra.comprobarCorreoNoContestado(mensajeComprobar);
 					break;
 				case 3:
-					ArrayList mensaje = new ArrayList();
 					System.out.println("Mensajes no Leidos: ");
-					comprobarTrabajador.comprobarMensajes();
-					comprobarTrabajador.setMensaje(mensaje);
+					System.out.println("");
+					mensajeComprobar = comprobarTrabajador.comprobarMensajes(comprobarTrabajador);
+					optra.comprobarCorreoNoLeido(mensajeComprobar);
+					comprobarTrabajador.setearNoLeidos(mensajeComprobar);
 					break;
 				case 6:
 					String codigoTrabajador = "jefeCompras";
-					envioMensajes.enviarMensajeJefeDepartamento(empresa, codigoTrabajador);
+					envioMensajes.enviarMensajeJefeDepartamento(empresa, codigoTrabajador,
+							comprobarTrabajador.getUsuario());
 					break;
 				case 7:
-					envioMensajes.enviarMensajeJefeEmpresa(empresa);
+					envioMensajes.enviarMensajeJefeEmpresa(empresa, comprobarTrabajador.getUsuario());
 					break;
 				case 8:
 					String nombre = null;
@@ -151,35 +161,35 @@ public class SwhitchCase {
 					System.out.println("Introduce precio del articulo: ");
 					precio = Float.parseFloat(sc.nextLine());
 					System.out.println("");
-			        try {
-			       final  PruebaSynzcronize p = new  PruebaSynzcronize();
+					try {
+						final PruebaSynzcronize p = new PruebaSynzcronize();
 
-			            new Thread() {
-			                @Override
-			                public void run() {
-			                    try {
-			                    	p.insertarSincronizado();
-			                    } catch (InterruptedException ex) {
-			                        Logger.getLogger(SwhitchCase.class.getName()).log(null, ex);
-			                    }
-			                }
-			            }.start();
+						new Thread() {
+							@Override
+							public void run() {
+								try {
+									p.insertarSincronizado();
+								} catch (InterruptedException ex) {
+									Logger.getLogger(SwhitchCase.class.getName()).log(null, ex);
+								}
+							}
+						}.start();
 
-			            Thread.sleep(2000);
+						Thread.sleep(2000);
 
-			            new Thread() {
-			                @Override
-			                public void run() {
-			                    try {
-			                        p.mostrarSinc();
-			                    } catch (InterruptedException ex) {
-			                        Logger.getLogger(SwhitchCase.class.getName()).log(null, ex);
-			                    }
-			                }
-			            }.start();
-			        } catch (InterruptedException ex) {
-			            Logger.getLogger(SwhitchCase.class.getName()).log(null, ex);
-			        }
+						new Thread() {
+							@Override
+							public void run() {
+								try {
+									p.mostrarSinc();
+								} catch (InterruptedException ex) {
+									Logger.getLogger(SwhitchCase.class.getName()).log(null, ex);
+								}
+							}
+						}.start();
+					} catch (InterruptedException ex) {
+						Logger.getLogger(SwhitchCase.class.getName()).log(null, ex);
+					}
 					opeBd.mostrarInsertarArticulos(nombre, precio);
 
 					break;
@@ -212,7 +222,7 @@ public class SwhitchCase {
 					break;
 				case 17:
 					break;
-				case 18:					
+				case 18:
 					break;
 				case 0:
 					System.out.println("HAS VUELTO AL LOGIN!");
@@ -228,7 +238,8 @@ public class SwhitchCase {
 			int opcion3 = 0;
 			do {
 				System.out.println("");
-				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getDepartamento().toUpperCase()+" **************");
+				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getDepartamento().toUpperCase()
+						+ " **************");
 				System.out.println("");
 				MenuGeneral.menuPrincipal();
 				MenuGeneral.menuRRHH();
@@ -236,25 +247,61 @@ public class SwhitchCase {
 				System.out.println("");
 				switch (opcion3) {
 				case 1:
-					envioMensajes.enviarMensajeMain(empresa);
-					logger.info(String.format("%1$s: >>>>>> Muensaje enviado a compañero.", methodName));
+					envioMensajes.enviarMensajeMain(empresa, comprobarTrabajador.getUsuario());
 					break;
 				case 2:
 					System.out.println("Mensajes no contestados: ");
-					
+					System.out.println("");
+					mensajeComprobar = comprobarTrabajador.comprobarMensajes(comprobarTrabajador);
+					optra.comprobarCorreoNoContestado(mensajeComprobar);
 					break;
 				case 3:
-					ArrayList mensaje = new ArrayList();
 					System.out.println("Mensajes no Leidos: ");
-					comprobarTrabajador.comprobarMensajes();
-					comprobarTrabajador.setMensaje(mensaje);
+					System.out.println("");
+					mensajeComprobar = comprobarTrabajador.comprobarMensajes(comprobarTrabajador);
+					optra.comprobarCorreoNoLeido(mensajeComprobar);
+					comprobarTrabajador.setearNoLeidos(mensajeComprobar);
 					break;
 				case 6:
 					String codigoTrabajador = "jefeRRHH";
-					envioMensajes.enviarMensajeJefeDepartamento(empresa, codigoTrabajador);
+					envioMensajes.enviarMensajeJefeDepartamento(empresa, codigoTrabajador,
+							comprobarTrabajador.getUsuario());
 					break;
 				case 7:
-					envioMensajes.enviarMensajeJefeEmpresa(empresa);
+					envioMensajes.enviarMensajeJefeEmpresa(empresa, comprobarTrabajador.getUsuario());
+					break;
+				case 8:
+					String trabajadorNominas;
+					System.out.println("Introduce el nombre de usuario del trabajador que quieres buscar");
+					trabajadorNominas = sc.nextLine();
+					operacionesTrabajadores = opRH.buscarTrabajador(trabajadorNominas, empresa);
+					if (operacionesTrabajadores != null) {
+						opRH.nominaTrabajador(operacionesTrabajadores);
+					} else {
+						System.out.println("El trabajador " + trabajadorNominas + " no existe");
+					}
+
+					break;
+				case 13:
+					String trabajador5 = null;
+					System.out.println("Introduce el nombre de usuario del trabajador que quieres buscar");
+					trabajador5 = sc.nextLine();
+
+					operacionesTrabajadores = opRH.buscarTrabajador(trabajador5, empresa);
+
+					if (operacionesTrabajadores != null) {
+						System.out.println("******* FICHA TRABAJADOR *********");
+						System.out.println("");
+						System.out.println("NOMBRE: " + operacionesTrabajadores.getNombre() + "\n" + "APELLIDO: "
+								+ operacionesTrabajadores.getApellido1() + "\n" + "ES DE TIPO: "
+								+ operacionesTrabajadores.getTipo() + "\n" + "ES JEFE? "
+								+ operacionesTrabajadores.isJefeOnO() + "\n" + "SU CODIGO ES: "
+								+ operacionesTrabajadores.getCodigo() + "\n" + "PERTENECE AL DEPARTAMENTO DE: "
+								+ operacionesTrabajadores.getDepartamento() + "\n");
+					} else {
+						System.out.println("El trabajador " + trabajador5 + " no existe");
+					}
+
 					break;
 				case 0:
 					System.out.println("HAS VUELTO AL LOGIN!");
@@ -270,7 +317,8 @@ public class SwhitchCase {
 			int opcion4 = 0;
 			do {
 				System.out.println("");
-				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getDepartamento().toUpperCase()+" **************");
+				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getDepartamento().toUpperCase()
+						+ " **************");
 				System.out.println("");
 				MenuGeneral.menuPrincipal();
 				MenuGeneral.menuDireccion();
@@ -278,18 +326,20 @@ public class SwhitchCase {
 				System.out.println("");
 				switch (opcion4) {
 				case 1:
-					envioMensajes.enviarMensajeMain(empresa);
-					logger.info(String.format("%1$s: >>>>>> Muensaje enviado a compañero.", methodName));
+					envioMensajes.enviarMensajeMain(empresa, comprobarTrabajador.getUsuario());
 					break;
 				case 2:
 					System.out.println("Mensajes no contestados: ");
-					
+					System.out.println("");
+					mensajeComprobar = comprobarTrabajador.comprobarMensajes(comprobarTrabajador);
+					optra.comprobarCorreoNoContestado(mensajeComprobar);
 					break;
 				case 3:
-					ArrayList mensaje = new ArrayList();
 					System.out.println("Mensajes no Leidos: ");
-					comprobarTrabajador.comprobarMensajes();
-					comprobarTrabajador.setMensaje(mensaje);
+					System.out.println("");
+					mensajeComprobar = comprobarTrabajador.comprobarMensajes(comprobarTrabajador);
+					optra.comprobarCorreoNoLeido(mensajeComprobar);
+					comprobarTrabajador.setearNoLeidos(mensajeComprobar);
 					break;
 				case 0:
 					System.out.println("HAS VUELTO AL LOGIN!");
@@ -305,7 +355,8 @@ public class SwhitchCase {
 			int opcion5 = 0;
 			do {
 				System.out.println("");
-				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getDepartamento().toUpperCase()+" **************");
+				System.out.println("*********** DEPARTAMENTO DE " + comprobarTrabajador.getDepartamento().toUpperCase()
+						+ " **************");
 				System.out.println("");
 				MenuGeneral.menuPrincipal();
 				MenuGeneral.menuAtencionCliente();
@@ -313,28 +364,29 @@ public class SwhitchCase {
 				System.out.println("");
 				switch (opcion5) {
 				case 1:
-					envioMensajes.enviarMensajeMain(empresa);
-					logger.info(String.format("%1$s: >>>>>> Muensaje enviado a compañero.", methodName));
+					envioMensajes.enviarMensajeMain(empresa, comprobarTrabajador.getUsuario());
 					break;
 				case 2:
 					System.out.println("Mensajes no contestados: ");
-					
+					System.out.println("");
+					mensajeComprobar = comprobarTrabajador.comprobarMensajes(comprobarTrabajador);
+					optra.comprobarCorreoNoContestado(mensajeComprobar);
 					break;
 				case 3:
-					ArrayList mensaje = new ArrayList();
 					System.out.println("Mensajes no Leidos: ");
-					comprobarTrabajador.comprobarMensajes();
-					comprobarTrabajador.setMensaje(mensaje);
+					System.out.println("");
+					mensajeComprobar = comprobarTrabajador.comprobarMensajes(comprobarTrabajador);
+					optra.comprobarCorreoNoLeido(mensajeComprobar);
+					comprobarTrabajador.setearNoLeidos(mensajeComprobar);
 					break;
 				case 8:
-					String nombre1,password;
-				
+					String nombre1, password;
+
 					System.out.println("Introduce el nombre de usuario del cliente que quieres actualizar");
 					nombre1 = sc.nextLine();
-					
+
 					System.out.println("Introduce la nueva password para el cliente");
 					password = sc.nextLine();
-
 
 					opeBd.mostrarActualizarNombre(password, nombre1);
 
@@ -356,7 +408,7 @@ public class SwhitchCase {
 //					operacionesAT.modificarCliente(nombreCliente2, empresa);
 //					break;
 				case 7:
-					envioMensajes.enviarMensajeJefeEmpresa(empresa);
+					envioMensajes.enviarMensajeJefeEmpresa(empresa, comprobarTrabajador.getUsuario());
 					break;
 				case 0:
 					System.out.println("HAS VUELTO AL LOGIN!");
@@ -369,10 +421,10 @@ public class SwhitchCase {
 		}// sw1
 	}
 
-	public void swhichClientes(Empresa empresa,Clientes comprobarClientes) {
+	public void swhichClientes(Empresa empresa, Clientes comprobarClientes) {
 		System.out.println("");
-		System.out.println("Bienvenido Cliente: "+comprobarClientes.getUsuario()+"\n"+"Tienes un saldo de: "+
-		comprobarClientes.getSaldo()+"€"+"\n");
+		System.out.println("Bienvenido Cliente: " + comprobarClientes.getUsuario() + "\n" + "Tienes un saldo de: "
+				+ comprobarClientes.getSaldo() + "€" + "\n");
 		switch (comprobarClientes.getTipo()) {
 		case "cliente":
 			int opcion6 = 0;
@@ -389,10 +441,9 @@ public class SwhitchCase {
 					System.out.println("*********FICHA DEL CLIENTE***************");
 					System.out.println("");
 					opeBd.mostrarConsultarNombre(comprobarClientes.getUsuario());
-					
-					
+
 					System.out.println("");
-					
+
 					break;
 				case 2:
 					int idArticulo;
@@ -400,7 +451,7 @@ public class SwhitchCase {
 					System.out.println("Inserte el codigo del articulo que quieres comprar");
 					idArticulo = Integer.parseInt(sc.nextLine());
 					opeBd.mostrarCompra(idArticulo, comprobarClientes.getIdCliente());
-					
+
 					break;
 				case 3:
 					Thread t1 = new Thread(c1);

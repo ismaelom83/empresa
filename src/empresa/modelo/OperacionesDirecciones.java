@@ -1,9 +1,14 @@
 package empresa.modelo;
 
+import java.util.ArrayList;
+
 import empresa.abtraccion.InterfaceDirecciones;
 import empresa.abtraccion.InterfaceTrabajadores;
 
 public class OperacionesDirecciones implements InterfaceDirecciones, InterfaceTrabajadores {
+	
+	
+	
 	private Trabajadores t;
 
 	
@@ -19,15 +24,12 @@ public class OperacionesDirecciones implements InterfaceDirecciones, InterfaceTr
 
 
 	@Override
-	public void comprobarCorreoNoContestado() {
-		// TODO Auto-generated method stub
-		InterfaceTrabajadores.super.comprobarCorreoNoContestado();
+	public void comprobarCorreoNoContestado(ArrayList<Mensajes> mensajeComprobar) {
 	}
 
 	@Override
-	public void comprobarCorreoNoLeido() {
+	public void comprobarCorreoNoLeido(ArrayList<Mensajes> mensajeComprobar) {
 		// TODO Auto-generated method stub
-		InterfaceTrabajadores.super.comprobarCorreoNoLeido();
 	}
 
 	@Override
@@ -44,8 +46,8 @@ public class OperacionesDirecciones implements InterfaceDirecciones, InterfaceTr
 
 	@Override
 	public void despedirEmpleado() {
-		// TODO Auto-generated method stub
-		InterfaceDirecciones.super.despedirEmpleado();
+		
+		System.out.println(t.getUsuario());
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import java.util.List;
 public class Trabajadores extends Persona {
 
 	private float salario;
-	private List<Mensajes> mensaje = new ArrayList<>();
+	private ArrayList<Mensajes> mensaje = new ArrayList<>();
 	private String contrasenya;
 	private boolean jefeOnO;
 	private String tipo;
@@ -18,6 +18,7 @@ public class Trabajadores extends Persona {
 	public Trabajadores() {
 		super();
 	}
+	
 
 	public Trabajadores(String nombre, String apellido1, float salario, String contrasenya, boolean jefeOnO,
 			String tipo, String codigo, String usuario,String departamento) {
@@ -31,7 +32,7 @@ public class Trabajadores extends Persona {
 		this.departamento=departamento;
 	}
 
-	public Trabajadores(String nombre, String apellido1, float salario, List<Mensajes> mensaje, String contrasenya,
+	public Trabajadores(String nombre, String apellido1, float salario, ArrayList<Mensajes> mensaje, String contrasenya,
 			boolean jefeOnO, String tipo, String codigo, String usuario,String departamento) {
 		super(nombre, apellido1);
 		this.salario = salario;
@@ -98,7 +99,7 @@ public class Trabajadores extends Persona {
 		return mensaje;
 	}
 
-	public void setMensaje(List<Mensajes> mensaje) {
+	public void setMensaje(ArrayList<Mensajes> mensaje) {
 		this.mensaje = mensaje;
 	}
 
@@ -119,12 +120,16 @@ public class Trabajadores extends Persona {
 				+ getApellido1() + "]";
 	}
 
-	public void comprobarMensajes() {
-		Iterator<Mensajes> it = mensaje.iterator();
-		while(it.hasNext())
-			  System.out.println(it.next());
+	public ArrayList<Mensajes> comprobarMensajes(Trabajadores t) {	
+		return this.mensaje;
 	}
 	
+	public void setearNoLeidos(ArrayList<Mensajes> mensajeComprobar){
+		Iterator<Mensajes> it = mensajeComprobar.iterator();
+		while (it.hasNext()) {
+			it.next().setConfirmacionLeido(true);
+		}
+	}
 
 	public void addMensaje(Mensajes m) {
 		mensaje.add(m);

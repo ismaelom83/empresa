@@ -26,6 +26,15 @@ public class Departamento {
 	public Departamento() {
 		super();
 	}
+	
+	
+
+	public Departamento(HashMap<String, Trabajadores> trabajador) {
+		super();
+		this.trabajador = trabajador;
+	}
+
+
 
 	public Departamento(String nombre, String codigo, int numeroTrabajadores, HashMap<String,Trabajadores> trabajador) {
 		super();

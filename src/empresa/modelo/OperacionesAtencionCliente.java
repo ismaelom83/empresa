@@ -1,5 +1,6 @@
 package empresa.modelo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import empresa.abtraccion.InterfaceAtencionCliente;
@@ -67,15 +68,13 @@ public class OperacionesAtencionCliente implements InterfaceTrabajadores, Interf
 
 
 	@Override
-	public void comprobarCorreoNoContestado() {
+	public void comprobarCorreoNoContestado(ArrayList<Mensajes> mensajeComprobar) {
 		// TODO Auto-generated method stub
-		InterfaceTrabajadores.super.comprobarCorreoNoContestado();
 	}
 
 	@Override
-	public void comprobarCorreoNoLeido() {
+	public void comprobarCorreoNoLeido(ArrayList<Mensajes> mensajeComprobar) {
 		// TODO Auto-generated method stub
-		InterfaceTrabajadores.super.comprobarCorreoNoLeido();
 	}
 
 	@Override

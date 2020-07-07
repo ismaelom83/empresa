@@ -13,6 +13,7 @@ import empresa.modelo.Clientes;
 import empresa.modelo.Departamento;
 import empresa.modelo.Empresa;
 import empresa.modelo.Mensajes;
+import empresa.modelo.OperacionesDirecciones;
 import empresa.modelo.OpreracionesTrabajadores;
 import empresa.modelo.Trabajadores;
 import empresa.thread.ContadorRegistrosHilos;
@@ -32,12 +33,13 @@ public class App {
 		OperacionesBD opeBd = new OperacionesBD();
 		Empresa empresa = new Empresa("my empresa", new HashMap<String, Departamento>(),new HashMap<String, Clientes>());
 		OpreracionesTrabajadores optra = null;
-		Departamento departamento = new Departamento();
+		Departamento departamento = new Departamento(new HashMap<String, Trabajadores>());
 		Trabajadores comprobarTrabajador = new Trabajadores();
 		Trabajadores enviarMensajeTrabajador = new Trabajadores();		
 		ContadorRegistrosHilos c1 = new ContadorRegistrosHilos();
 		Clientes comprobarCliente = new Clientes();
 		Clientes cliente = new Clientes();
+		OperacionesDirecciones opdic = new OperacionesDirecciones();
 		Mensajes men = null;
 		SwhitchCase sh = new SwhitchCase();
 		sc = new Scanner(System.in);
@@ -47,8 +49,7 @@ public class App {
 		
 
 		do {
-			
-//			boolean comprobarCliente = false;
+	
 			MenuGeneral.menuLogin();
 			System.out.println("Introduce Usuario : ");
 
@@ -58,13 +59,12 @@ public class App {
 			contrasenya = sc.nextLine();
 
 			System.out.println("");
-			
-			
+					
 		
 				comprobarCliente =	opeBd.mostrarLogin(usuario,contrasenya,cliente);
 				
 				comprobarTrabajador = empresa.validarTrabajador(usuario, contrasenya, empresa);
-				
+
 			if (comprobarTrabajador != null || comprobarCliente != null) {
 				
 				
