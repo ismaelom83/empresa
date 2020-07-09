@@ -1,6 +1,7 @@
 package empresa.utils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 import org.apache.log4j.LogManager;
@@ -13,6 +14,7 @@ import empresa.modelo.Departamento;
 import empresa.modelo.Empresa;
 import empresa.modelo.Mensajes;
 import empresa.modelo.OperacionesAtencionCliente;
+import empresa.modelo.OperacionesDirecciones;
 import empresa.modelo.OperacionesRRHH;
 import empresa.modelo.OpreracionesTrabajadores;
 import empresa.modelo.Trabajadores;
@@ -37,6 +39,7 @@ public class SwhitchCase {
 	OperacionesRRHH opRH = new OperacionesRRHH();
 	Clientes cliente = new Clientes();
 	Mensajes men = new Mensajes();
+	OperacionesDirecciones opDirecc = new OperacionesDirecciones();
 	ArrayList<Mensajes> mensajeComprobar = new ArrayList<>();
 
 	String usuario, contrasenya = null;
@@ -64,7 +67,14 @@ public class SwhitchCase {
 				System.out.println("");
 				MenuGeneral.menuPrincipal();
 				MenuGeneral.menuVentas();
-				opcion = Integer.parseInt(sc.nextLine());
+
+				//validacion de las opciones del swhich para solo insertar numeros.
+				  while(!sc.hasNextInt()){
+	                  sc.nextLine();
+	                  System.err.println("Introduce un numero");
+	              }
+	              opcion=sc.nextInt();
+	              sc.nextLine();
 				System.out.println("");
 				switch (opcion) {
 				case 1:
@@ -99,9 +109,13 @@ public class SwhitchCase {
 					int id2;
 					System.out.println("Busqueda de articulos");
 					System.out.println("Introduce el id del aticulo a buscar: ");
-					id2 = Integer.parseInt(sc.nextLine());
+					  while(!sc.hasNextInt()){
+		                  sc.nextLine();
+		                  System.err.println("Introduce un numero");
+		              }
+		              id2=sc.nextInt();
+		              sc.nextLine();
 					System.out.println("");
-
 					opeBd.mostrarBuscarArticulos(id2);
 
 					break;
@@ -125,8 +139,14 @@ public class SwhitchCase {
 				System.out.println("");
 				MenuGeneral.menuPrincipal();
 				MenuGeneral.menuCompras();
-				opcion2 = Integer.parseInt(sc.nextLine());
+				  while(!sc.hasNextInt()){
+	                  sc.nextLine();
+	                  System.err.println("Introduce un numero");
+	              }
+	              opcion2=sc.nextInt();
+	              sc.nextLine();
 				System.out.println("");
+		
 				switch (opcion2) {
 				case 1:
 					envioMensajes.enviarMensajeMain(empresa, comprobarTrabajador.getUsuario());
@@ -159,7 +179,12 @@ public class SwhitchCase {
 					nombre = sc.nextLine();
 
 					System.out.println("Introduce precio del articulo: ");
-					precio = Float.parseFloat(sc.nextLine());
+					  while(!sc.hasNextInt()){
+		                  sc.nextLine();
+		                  System.err.println("Introduce un numero");
+		              }
+		              precio=sc.nextInt();
+		              sc.nextLine();
 					System.out.println("");
 					try {
 						final PruebaSynzcronize p = new PruebaSynzcronize();
@@ -199,7 +224,12 @@ public class SwhitchCase {
 
 					System.out.println("Borrado de articulos");
 					System.out.println("Introduce el id del aticulo a borrar: ");
-					id = Integer.parseInt(sc.nextLine());
+					  while(!sc.hasNextInt()){
+		                  sc.nextLine();
+		                  System.err.println("Introduce un numero");
+		              }
+		              id=sc.nextInt();
+		              sc.nextLine();
 					System.out.println("");
 
 					opeBd.mostrarBorraArticulos(id);
@@ -214,7 +244,12 @@ public class SwhitchCase {
 
 					System.out.println("Busqueda de articulos");
 					System.out.println("Introduce el id del aticulo a buscar: ");
-					id2 = Integer.parseInt(sc.nextLine());
+					  while(!sc.hasNextInt()){
+		                  sc.nextLine();
+		                  System.err.println("Introduce un numero");
+		              }
+		              id2=sc.nextInt();
+		              sc.nextLine();
 					System.out.println("");
 
 					opeBd.mostrarBuscarArticulos(id2);
@@ -243,7 +278,12 @@ public class SwhitchCase {
 				System.out.println("");
 				MenuGeneral.menuPrincipal();
 				MenuGeneral.menuRRHH();
-				opcion3 = Integer.parseInt(sc.nextLine());
+				  while(!sc.hasNextInt()){
+	                  sc.nextLine();
+	                  System.err.println("Introduce un numero");
+	              }
+	              opcion3=sc.nextInt();
+	              sc.nextLine();
 				System.out.println("");
 				switch (opcion3) {
 				case 1:
@@ -281,6 +321,27 @@ public class SwhitchCase {
 						System.out.println("El trabajador " + trabajadorNominas + " no existe");
 					}
 
+					break;
+				case 11:
+//					String nombreNuevo, apaellidoNuevo, contrasenyaNueva, usuarioNuevo, departamentoNuevo = null;
+//					float salarioNuevo;
+//					System.out.println("Introduce el nombre del trabajador a crear");
+//					nombreNuevo = sc.nextLine();
+//					System.out.println("Introduce el apellido del trabajador a crear");
+//					apaellidoNuevo = sc.nextLine();
+//					System.out.println("Introduce el salario del trabajador a crear");
+//					salarioNuevo = Float.parseFloat(sc.nextLine());
+//					System.out.println("Introduce la contraseña del trabajador a crear");
+//					contrasenyaNueva = sc.nextLine();
+//					System.out.println("Introduce el nombre de usuario del trabajador a crear");
+//					usuarioNuevo = sc.nextLine();
+//					System.out.println("Introduce el departamento  del trabajador a crear");
+//					departamentoNuevo = sc.nextLine();
+//
+//					operacionesTrabajadores = departamento.altaTrabajadorConsola(nombreNuevo, apaellidoNuevo,
+//							salarioNuevo, contrasenyaNueva, usuarioNuevo, departamentoNuevo);
+//					departamento.altaTrabajador(usuarioNuevo, operacionesTrabajadores);
+//					System.out.println(operacionesTrabajadores);
 					break;
 				case 13:
 					String trabajador5 = null;
@@ -322,7 +383,12 @@ public class SwhitchCase {
 				System.out.println("");
 				MenuGeneral.menuPrincipal();
 				MenuGeneral.menuDireccion();
-				opcion4 = Integer.parseInt(sc.nextLine());
+				  while(!sc.hasNextInt()){
+	                  sc.nextLine();
+	                  System.err.println("Introduce un numero");
+	              }
+	              opcion4=sc.nextInt();
+	              sc.nextLine();
 				System.out.println("");
 				switch (opcion4) {
 				case 1:
@@ -345,6 +411,35 @@ public class SwhitchCase {
 					System.out.println("HAS VUELTO AL LOGIN!");
 					System.out.println("");
 					break;
+				case 8:
+					String despedirTrabajador = null;
+					HashMap<String, Trabajadores> t;
+					System.out.println("Introduce el nombre de usuario del trabajador que quieres despedir: ");
+					despedirTrabajador = sc.nextLine();
+					t = opDirecc.despedirEmpleado(despedirTrabajador, empresa);
+						operacionesTrabajadores.borraEmpleado(t, despedirTrabajador);
+					break;
+				case 17:
+					String tSubirSueldo = null;
+					float cSubirSueldo;
+					System.out.println("Introduce el nombre de usuario del trabajador que quieres subir sueldo");
+					tSubirSueldo = sc.nextLine();
+					operacionesTrabajadores = opRH.buscarTrabajador(tSubirSueldo, empresa);
+					System.out.println("Introduce la cantidad  que quieres subir el sueldo");
+					  while(!sc.hasNextInt()){
+		                  sc.nextLine();
+		                  System.err.println("Introduce un numero");
+		              }
+		              cSubirSueldo=sc.nextInt();
+		              sc.nextLine();
+					System.out.println("");
+					if (operacionesTrabajadores!=null) {
+						opDirecc.subirSueldo(operacionesTrabajadores, cSubirSueldo);
+					}else {
+						System.out.println("El usuario no existe");
+					}
+				
+					break;
 				default:
 					break;
 				}
@@ -360,7 +455,13 @@ public class SwhitchCase {
 				System.out.println("");
 				MenuGeneral.menuPrincipal();
 				MenuGeneral.menuAtencionCliente();
-				opcion5 = Integer.parseInt(sc.nextLine());
+				  while(!sc.hasNextInt()){
+	                  sc.nextLine();
+	                  System.err.println("Introduce un numero");
+	              }
+	              opcion5=sc.nextInt();
+	              sc.nextLine();
+				System.out.println("");
 				System.out.println("");
 				switch (opcion5) {
 				case 1:
@@ -433,7 +534,13 @@ public class SwhitchCase {
 				System.out.println("******* MENU DEL CLIENTE ***************");
 				System.out.println("");
 				MenuGeneral.menuCliente();
-				opcion6 = Integer.parseInt(sc.nextLine());
+				  while(!sc.hasNextInt()){
+	                  sc.nextLine();
+	                  System.err.println("Introduce un numero");
+	              }
+	              opcion6=sc.nextInt();
+	              sc.nextLine();
+				System.out.println("");
 				System.out.println("");
 
 				switch (opcion6) {
@@ -449,7 +556,13 @@ public class SwhitchCase {
 					int idArticulo;
 					System.out.println("Realizar compra de articulo");
 					System.out.println("Inserte el codigo del articulo que quieres comprar");
-					idArticulo = Integer.parseInt(sc.nextLine());
+					  while(!sc.hasNextInt()){
+		                  sc.nextLine();
+		                  System.err.println("Introduce un numero");
+		              }
+		              idArticulo=sc.nextInt();
+		              sc.nextLine();
+					System.out.println("");
 					opeBd.mostrarCompra(idArticulo, comprobarClientes.getIdCliente());
 
 					break;

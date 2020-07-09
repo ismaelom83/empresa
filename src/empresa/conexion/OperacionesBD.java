@@ -152,14 +152,12 @@ public class OperacionesBD {
 
 	public void insertarArticulos(String nombre, float precio) throws SQLException {
 
-		System.out.println("Insertar articulos:");
 		PreparedStatement ps = conexion.prepareStatement("INSERT INTO articulos  (nombre,precio) " + "VALUES (?, ?)");
 
 		ps.setString(1, nombre);
 		ps.setFloat(2, precio);
 
 		int resultado = ps.executeUpdate();
-		System.out.println("se ha insertado correctamente");
 		if (resultado == 0) {
 			System.out.println("NO se ha podido insertar");
 		}

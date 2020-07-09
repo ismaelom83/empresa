@@ -72,7 +72,8 @@ public class App {
 
 				//si el trabajador no es nulo mostramos el swicht case del trabajador
 				if (comprobarTrabajador != null) {		
-					sh.swhichTrabajadores(comprobarTrabajador,empresa);								
+					sh.swhichTrabajadores(comprobarTrabajador,empresa);	
+					
 				}
 				//si el trabajador no es nulo mostramos el swicht case del cliente
 				if (comprobarCliente!=null) {

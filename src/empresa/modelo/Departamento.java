@@ -113,6 +113,15 @@ public void altaTrabajador(String c,Trabajadores t) {
 	
 }
 
+//
+//public Trabajadores altaTrabajadorConsola(String nombre, String apellido, float salario, String contrasenya, String usuario,String departamento) {
+//	
+//	 Trabajadores trab =	new Trabajadores(nombre, apellido, salario, contrasenya,usuario,departamento);
+//
+//	return trab;
+//
+//}
+
 public void buscarTrabajador() {
 	for (String key : trabajador.keySet()) {
 		System.out.println(trabajador.get(key));

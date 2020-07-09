@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import empresa.abtraccion.InterfaceRRHH;
 import empresa.abtraccion.InterfaceTrabajadores;
@@ -15,8 +16,8 @@ public class OperacionesRRHH implements InterfaceTrabajadores, InterfaceRRHH {
 	Departamento departamentos = new Departamento();
 	Empresa empresa = new Empresa();
 
-	 List<Trabajadores> trabajador = new ArrayList<>();
-	 Map<String, Departamento> departamento = new HashMap<>();
+	HashMap<String, Trabajadores> trabajador = new HashMap<>();
+	Map<String, Departamento> departamento = new HashMap<>();
 
 	private Trabajadores t;
 
@@ -30,8 +31,8 @@ public class OperacionesRRHH implements InterfaceTrabajadores, InterfaceRRHH {
 
 	@Override
 	public void nominaTrabajador(Trabajadores operacionesTrabajadores) {
-		System.out.println("LA NOMINA DEL TRABAJADOR "+operacionesTrabajadores.getNombre()+
-				" "+operacionesTrabajadores.getApellido1()+" es "+operacionesTrabajadores.getSalario()+"€");
+		System.out.println("LA NOMINA DEL TRABAJADOR " + operacionesTrabajadores.getNombre() + " "
+				+ operacionesTrabajadores.getApellido1() + " es " + operacionesTrabajadores.getSalario() + "€");
 	}
 
 	@Override
@@ -46,22 +47,7 @@ public class OperacionesRRHH implements InterfaceTrabajadores, InterfaceRRHH {
 		InterfaceRRHH.super.gastoTotal();
 	}
 
-//	@Override
-//	public boolean altaTrabajador(String nombre, String apellido, float salario, String contrasenya, boolean jefeONo) {
-//
-//		boolean correcto = false;
-//
-//		if (true) {
-//
-//			trabajador.add(new Trabajadores(nombre, apellido, salario, contrasenya, jefeONo));
-//
-//			correcto = true;
-//
-//		}
-//		return correcto;
-//	}
-	
-	
+
 
 	@Override
 	public void bajaLogicaTrabajador() {
@@ -69,7 +55,7 @@ public class OperacionesRRHH implements InterfaceTrabajadores, InterfaceRRHH {
 		InterfaceRRHH.super.bajaLogicaTrabajador();
 	}
 
-	public Trabajadores buscarTrabajador(String usuario,Empresa empresa) {
+	public Trabajadores buscarTrabajador(String usuario, Empresa empresa) {
 		String claveDepartamento;
 		Iterator<String> departamentos = empresa.getDepartamento().keySet().iterator();
 		while (departamentos.hasNext()) {
@@ -82,11 +68,10 @@ public class OperacionesRRHH implements InterfaceTrabajadores, InterfaceRRHH {
 				if (clave.equals(usuario)) {
 					Trabajadores t = d.getTrabajador().get(clave);
 					return t;
-					
 				}
 			}
 		}
-				
+
 		return null;
 
 	}
@@ -95,18 +80,16 @@ public class OperacionesRRHH implements InterfaceTrabajadores, InterfaceRRHH {
 	public void buscarDepartamento() {
 	}
 
-
-
 	@Override
 	public void comprobarCorreoNoContestado(ArrayList<Mensajes> mensajeComprobar) {
 		// TODO Auto-generated method stub
-	
+
 	}
 
 	@Override
 	public void comprobarCorreoNoLeido(ArrayList<Mensajes> mensajeComprobar) {
 		// TODO Auto-generated method stub
-	
+
 	}
 
 	@Override
@@ -114,9 +97,9 @@ public class OperacionesRRHH implements InterfaceTrabajadores, InterfaceRRHH {
 		// TODO Auto-generated method stub
 		InterfaceTrabajadores.super.comprobarCorreoDia();
 	}
-	
-	public void altaTrabajador(Trabajadores t) {
-		trabajador.add(t);
+
+	public void altaTrabajador(Trabajadores t,String key) {
+		trabajador.put(key,t);
 	}
 
 	@Override
@@ -124,6 +107,5 @@ public class OperacionesRRHH implements InterfaceTrabajadores, InterfaceRRHH {
 		// TODO Auto-generated method stub
 		InterfaceTrabajadores.super.comprobarCorreoIntervalo();
 	}
-
 
 }

@@ -1,6 +1,7 @@
 package empresa.modelo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -17,6 +18,14 @@ public class Trabajadores extends Persona {
 
 	public Trabajadores() {
 		super();
+	}
+	
+	public Trabajadores(String nombre, String apellido1, float salario, String contrasenya, String usuario,String departamento) {
+		super(nombre, apellido1);
+		this.salario = salario;
+		this.contrasenya = contrasenya;
+		this.usuario = usuario;
+		this.departamento=departamento;
 	}
 	
 
@@ -118,6 +127,19 @@ public class Trabajadores extends Persona {
 				+ ", jefeOnO=" + jefeOnO + ", tipo=" + tipo + ", codigo=" + codigo + ", usuario=" + usuario
 				+ ", departamento=" + departamento + ", getNombre()=" + getNombre() + ", getApellido1()="
 				+ getApellido1() + "]";
+	}
+	
+	public void borraEmpleado(HashMap<String, Trabajadores> t, String key) {
+		
+		if (t.containsKey(key)) {
+			t.remove(key);
+			System.out.println("El usuario " +key+" ha sido despedido");
+			
+		} else {
+			
+			System.err.println("El usuario " +key+" no existe");
+		}
+	
 	}
 
 	public ArrayList<Mensajes> comprobarMensajes(Trabajadores t) {	

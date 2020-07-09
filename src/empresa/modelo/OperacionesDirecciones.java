@@ -1,18 +1,17 @@
 package empresa.modelo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import empresa.abtraccion.InterfaceDirecciones;
 import empresa.abtraccion.InterfaceTrabajadores;
 
 public class OperacionesDirecciones implements InterfaceDirecciones, InterfaceTrabajadores {
-	
-	
-	
+
 	private Trabajadores t;
 
-	
-	
 	public Trabajadores getT() {
 		return t;
 	}
@@ -21,7 +20,14 @@ public class OperacionesDirecciones implements InterfaceDirecciones, InterfaceTr
 		this.t = t;
 	}
 
-
+	@Override
+	public void subirSueldo(Trabajadores t, float salario) {
+		float salarioOriginal;
+		salarioOriginal = t.getSalario();
+		t.setSalario(salarioOriginal + salario);
+		System.out.println(
+				"Salario subido " + salario + "€ " + " al trabajador " + t.getNombre() + " " + t.getApellido1() + "\n");
+	}
 
 	@Override
 	public void comprobarCorreoNoContestado(ArrayList<Mensajes> mensajeComprobar) {
@@ -45,9 +51,30 @@ public class OperacionesDirecciones implements InterfaceDirecciones, InterfaceTr
 	}
 
 	@Override
-	public void despedirEmpleado() {
+	public HashMap<String, Trabajadores> despedirEmpleado(String usuario, Empresa empresa) {
+		boolean b = false;
+		String claveDepartamento;
+		Iterator<String> departamentos = empresa.getDepartamento().keySet().iterator();
+		while (departamentos.hasNext()) {
+			claveDepartamento = departamentos.next();
+			Departamento d = empresa.getDepartamento().get(claveDepartamento);
+			String clave;
+			Iterator<String> trabajadores = d.getTrabajador().keySet().iterator();
+			while (trabajadores.hasNext()) {
+				HashMap<String, Trabajadores> t = d.getTrabajador();
+				clave = trabajadores.next();
+				if (clave.equals(usuario)) {
+					return t;
+				}
+			}
+			
+		}
 		
-		System.out.println(t.getUsuario());
+		if (!b) {
+			System.err.println("El usuario "+usuario+" no existe");
+		}
+		return null;
+
 	}
 
 	@Override
@@ -115,7 +142,5 @@ public class OperacionesDirecciones implements InterfaceDirecciones, InterfaceTr
 		// TODO Auto-generated method stub
 		return super.toString();
 	}
-	
-	
-	
+
 }

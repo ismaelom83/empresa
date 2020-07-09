@@ -23,7 +23,6 @@ public class Empresa {
 		departamento = new HashMap<>();
 	}
 	
-	
 
 	public Empresa(String nombre, HashMap<String, Departamento> departamento, HashMap<String, Clientes> clientes) {
 		super();
