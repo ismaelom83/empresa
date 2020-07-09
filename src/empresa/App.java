@@ -49,7 +49,7 @@ public class App {
 		
 
 		do {
-	
+	//pedimos las credenciales del login
 			MenuGeneral.menuLogin();
 			System.out.println("Introduce Usuario : ");
 
@@ -61,18 +61,20 @@ public class App {
 			System.out.println("");
 					
 		
+			//comprobamos el cliente que esta en la base de datos
 				comprobarCliente =	opeBd.mostrarLogin(usuario,contrasenya,cliente);
-				
+				//comprobamos el trabajador que esta almacenado en local
 				comprobarTrabajador = empresa.validarTrabajador(usuario, contrasenya, empresa);
 
 			if (comprobarTrabajador != null || comprobarCliente != null) {
 				
 				
 
+				//si el trabajador no es nulo mostramos el swicht case del trabajador
 				if (comprobarTrabajador != null) {		
 					sh.swhichTrabajadores(comprobarTrabajador,empresa);								
 				}
-				
+				//si el trabajador no es nulo mostramos el swicht case del cliente
 				if (comprobarCliente!=null) {
 					sh.swhichClientes(empresa,comprobarCliente);
 				}
